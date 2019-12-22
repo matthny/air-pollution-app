@@ -16,4 +16,9 @@ export class OpenAQService {
     return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/countries');
   }
 
+  
+  public getLocationsForCountry(country: string): Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/countries?locations=' + country);
+  }
+
 }

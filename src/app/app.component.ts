@@ -19,6 +19,12 @@ export class AppComponent {
       console.log(data);
 
     })
+
+    this.openAQService.getLocationsForCountry('Poland').subscribe((data) => {
+      console.log(data);
+    }) 
+
+
   }
 
 }
