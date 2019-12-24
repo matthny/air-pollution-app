@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-
-import { OpenAQService } from './api/open-aq.service'
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,16 +10,8 @@ export class AppComponent {
 
 
 
-  constructor(private openAQService: OpenAQService) {
+  constructor() {
 
-    this.openAQService.getCountries().subscribe((data) => {
-      console.log(data);
-
-    })
-
-    this.openAQService.getLocationsForCountry('Poland').subscribe((data) => {
-      console.log(data);
-    }) 
 
 
   }

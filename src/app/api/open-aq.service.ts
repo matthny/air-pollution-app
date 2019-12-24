@@ -17,8 +17,12 @@ export class OpenAQService {
   }
 
   
-  public getLocationsForCountry(country: string): Observable<OpenAQResponse> {
-    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/countries?locations=' + country);
+  public getCities(countryCode: string): Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/cities?country=' + countryCode +'&limit=' + 1000);
+  }
+
+  public getLocations(city: string): Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/locations?city=' + city +'&limit=' + 1000);
   }
 
 }
