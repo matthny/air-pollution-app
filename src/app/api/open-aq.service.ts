@@ -25,4 +25,8 @@ export class OpenAQService {
     return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/locations?city=' + city +'&limit=' + 1000);
   }
 
+  public getLatestPollution(location: string):  Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/latest?location=' + location);
+  }
+
 }

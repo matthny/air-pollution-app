@@ -7,9 +7,9 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatSelectModule } from '@angular/material/select'; 
-import { MatFormFieldModule } from '@angular/material'; 
-import { MatInputModule } from '@angular/material'; 
+import { MatButtonToggleModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule} from '@angular/material'; 
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms'; 
+
 
 @NgModule({
   declarations: [
@@ -23,7 +23,11 @@ import { MatInputModule } from '@angular/material';
     BrowserAnimationsModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonToggleModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

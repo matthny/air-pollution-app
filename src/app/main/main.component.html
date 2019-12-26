@@ -1,27 +1,42 @@
-<mat-form-field>
-  <mat-label>Country</mat-label>
-  <mat-select (selectionChange)="onCountrySelected($event)">
-    <mat-option *ngFor="let country of countries" [value]="country.code">
-      {{country.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<form [formGroup]="pollutionForm" novalidate (ngSubmit)="setLatestPollution(pollutionForm.value)">
+  <mat-form-field>
+    <mat-label>Country</mat-label>
+    <mat-select (selectionChange)="onCountrySelected($event)" formControlName="country">
+      <mat-option *ngFor="let country of countries" [value]="country.code">
+        {{country.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>City</mat-label>
-  <mat-select (selectionChange)="onCitySelected($event)">
-    <mat-option *ngFor="let city of cities" [value]="city.city">
-      {{city.city}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>City</mat-label>
+    <mat-select (selectionChange)="onCitySelected($event)" formControlName="city">
+      <mat-option *ngFor="let city of cities" [value]="city.city">
+        {{city.city}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Location</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let location of locations" [value]="location.location">
-      {{location.location}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Location</mat-label>
+    <mat-select formControlName="location">
+      <mat-option *ngFor="let location of locations" [value]="location.location">
+        {{location.location}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-button-toggle-group #dateGroup="matButtonToggleGroup" formControlName="dateType">
+    <mat-button-toggle value="now" aria-label="Now">
+      Now
+    </mat-button-toggle>
+    <mat-button-toggle value="dateRange" aria-label="Date picker">
+      <mat-icon>date_range</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <button mat-stroked-button type="submit">Go!</button>
+</form>
+
+
 
