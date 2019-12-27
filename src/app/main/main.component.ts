@@ -5,31 +5,42 @@ import { Subscription } from 'rxjs';
 
 
 import { OpenAQService } from '../api/open-aq.service';
-import { OpenAQResponse } from '../models/open-aq-response';
+import { OpenAQResponse } from '../helpers/common-helper';
+
+import { pollutionGridElement } from '../helpers/common-helper';
+
+
 import { CommonHelper} from '../helpers/common-helper';
 
 import { Country } from '../models/country';
 import { City } from '../models/city';
 import { Location } from '../models/location';
-import { Pollution } from '../models/pollution';
+import { LatestPollution } from '../models/latest-pollution';
+import { LatestMeasurement } from '../models/latest-measurement';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.sass']
+  styleUrls: ['./main.component.scss']
 })
+
+
 
 export class MainComponent implements OnInit {
   ngOnInit() {
     this.initialize()
   }
 
-  public pollutionForm: FormGroup;
 
   private countries: Country[] = [];
   private cities: City[] = [];
   private locations: Location[] = [];
-  private latestPollution: Pollution;
+
+  public pollutionForm: FormGroup;
+
+  private latestPollution: LatestPollution;
+  private latestPollutionGridDataSource: pollutionGridElement[] = [];
+  private latestPollutionGridColumns: any[] = [];
 
 
 
@@ -39,11 +50,8 @@ export class MainComponent implements OnInit {
   }
 
   private initialize(): void {
-
-    this.setCountries();
     this.setPollutionForm();
-
-
+    this.setCountries();
   }
 
   private setPollutionForm(): void {
@@ -94,17 +102,17 @@ export class MainComponent implements OnInit {
       }
     })
   }
-
-  // private setLatestPollution(e): void {
-  //   this.openAQService.getLatestPollution(this.pollutionForm.value.location).subscribe((data: OpenAQResponse) => {
-  //     this.latestPollution =  data.results != null ? new Pollution(data.results) : null;
-  //   })
-  // }
+  
   private setLatestPollution(): void {
+    this.setLatestPollutionGrid();
+  }
+
+  private setLatestPollutionGrid(): void {
     this.openAQService.getLatestPollution(this.pollutionForm.value.location).subscribe((data: OpenAQResponse) => {
-      this.latestPollution =  data.results != null ? new Pollution(data.results[0]) : null;
-      console.log(this.latestPollution);
-    
+      this.latestPollution =  data.results != null ? new LatestPollution(data.results[0]) : null;
+
+      this.latestPollutionGridDataSource = CommonHelper.getLatestPollutionGridDataSource(this.latestPollution.measurements);
+      this.latestPollutionGridColumns = CommonHelper.getLatestPollutionGridColumns(this.latestPollutionGridDataSource);
     })
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OpenAQResponse } from '../models/open-aq-response';
+import { OpenAQResponse } from '../helpers/common-helper';
 import { Observable } from 'rxjs';
 
 @Injectable({

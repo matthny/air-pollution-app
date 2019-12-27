@@ -1,10 +1,10 @@
-import { Measurement } from './measurement';
+import { LatestMeasurement } from './latest-measurement';
 
-export class Pollution {
+export class LatestPollution {
     public location: string;
     public city: string;
     public countryCode: string;
-    public measurements: Measurement[] = [];
+    public measurements: LatestMeasurement[] = [];
 
     constructor(constructorObject: any) {
         this.fromJSON(constructorObject)
@@ -18,7 +18,7 @@ export class Pollution {
             this.city = constructorObject.city;
             this.countryCode = constructorObject.country;
             this.measurements = constructorObject.measurements =! null 
-                ? constructorObject.measurements.map((measurement: any) => new Measurement(measurement))
+                ? constructorObject.measurements.map((measurement: any) => new LatestMeasurement(measurement))
                 : []
         } 
 
