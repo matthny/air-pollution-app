@@ -38,7 +38,6 @@ export class MainComponent implements OnInit {
 
   public pollutionForm: FormGroup;
 
-  private latestPollution: LatestPollution;
   private latestPollutionGridDataSource: pollutionGridElement[] = [];
   private latestPollutionGridColumns: any[] = [];
 
@@ -108,10 +107,12 @@ export class MainComponent implements OnInit {
   }
 
   private setLatestPollutionGrid(): void {
-    this.openAQService.getLatestPollution(this.pollutionForm.value.location).subscribe((data: OpenAQResponse) => {
-      this.latestPollution =  data.results != null ? new LatestPollution(data.results[0]) : null;
+    this.resetLatestPollutionGrid();
 
-      this.latestPollutionGridDataSource = CommonHelper.getLatestPollutionGridDataSource(this.latestPollution.measurements);
+    this.openAQService.getLatestPollution(this.pollutionForm.value.location).subscribe((data: OpenAQResponse) => {
+      const latestPollution: LatestPollution =  data.results != null ? new LatestPollution(data.results[0]) : null;
+
+      this.latestPollutionGridDataSource = CommonHelper.getLatestPollutionGridDataSource(latestPollution.measurements);
       this.latestPollutionGridColumns = CommonHelper.getLatestPollutionGridColumns(this.latestPollutionGridDataSource);
     })
   }
@@ -123,5 +124,11 @@ export class MainComponent implements OnInit {
 
   private onCitySelected(e: any): void {
     this.setLocations(e.value);
+  }
+
+  private resetLatestPollutionGrid(): void {
+    this.latestPollutionGridDataSource = [];
+    this.latestPollutionGridColumns = [];
+
   }
 }
