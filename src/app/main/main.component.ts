@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { OpenAQService } from '../api/open-aq.service';
 import { OpenAQResponse } from '../helpers/common-helper';
 
-import { pollutionGridElement } from '../helpers/common-helper';
+import { PollutionGridElement } from '../models/pollution-grid-element';
 
 
 import { CommonHelper} from '../helpers/common-helper';
@@ -17,6 +17,8 @@ import { City } from '../models/city';
 import { Location } from '../models/location';
 import { LatestPollution } from '../models/latest-pollution';
 import { LatestMeasurement } from '../models/latest-measurement';
+import { Measurement } from '../models/measurement';
+import { GridService } from '../services/grid.service';
 
 @Component({
   selector: 'app-main',
@@ -27,24 +29,25 @@ import { LatestMeasurement } from '../models/latest-measurement';
 
 
 export class MainComponent implements OnInit {
-  ngOnInit() {
-    this.initialize()
-  }
-
-
   private countries: Country[] = [];
   private cities: City[] = [];
   private locations: Location[] = [];
 
   public pollutionForm: FormGroup;
 
-  private latestPollutionGridDataSource: pollutionGridElement[] = [];
+  private latestPollutionGridDataSource: PollutionGridElement[] = [];
   private latestPollutionGridColumns: any[] = [];
 
+  private measurementGridDataSource: PollutionGridElement[] = [];
+  private measurementGridGridColumns: any[] = [];
 
+  ngOnInit() {
+    this.initialize();
+  }
 
   constructor(
-      private openAQService: OpenAQService
+      private openAQService: OpenAQService,
+      private gridService: GridService
     ) {
   }
 
@@ -82,7 +85,7 @@ export class MainComponent implements OnInit {
         this.cities = data.results
           .map(result => new City(result))
           .filter(result => result.city != null)
-          .sort(City.alphabeticalComparator)
+          .sort(City.alphabeticalComparator);
       } else {
         this.cities = [];
       }
@@ -95,11 +98,16 @@ export class MainComponent implements OnInit {
         this.locations = data.results
           .map(result => new Location(result))
           .filter(result => result.sourceName != null)
-          .sort(Location.alphabeticalComparator)
+          .sort(Location.alphabeticalComparator);
       } else {
         this.locations = [];
       }
     })
+  }
+
+  private onGoClick(): void {
+    this.setLatestPollution();
+    this.setMeasurements();
   }
   
   private setLatestPollution(): void {
@@ -112,12 +120,16 @@ export class MainComponent implements OnInit {
     this.openAQService.getLatestPollution(this.pollutionForm.value.location).subscribe((data: OpenAQResponse) => {
       const latestPollution: LatestPollution =  data.results != null ? new LatestPollution(data.results[0]) : null;
 
-      this.latestPollutionGridDataSource = CommonHelper.getLatestPollutionGridDataSource(latestPollution.measurements);
-      this.latestPollutionGridColumns = CommonHelper.getLatestPollutionGridColumns(this.latestPollutionGridDataSource);
+      this.latestPollutionGridDataSource = this.gridService.getPollutionGridDataSource(latestPollution.measurements);
+      this.latestPollutionGridColumns = this.gridService.getPollutionGridColumns(this.latestPollutionGridDataSource);
     })
   }
 
-  
+  private resetLatestPollutionGrid(): void {
+    this.latestPollutionGridDataSource = [];
+    this.latestPollutionGridColumns = [];
+  }
+
   private onCountrySelected(e: any): void {
     this.setCities(e.value);
   }
@@ -126,9 +138,37 @@ export class MainComponent implements OnInit {
     this.setLocations(e.value);
   }
 
-  private resetLatestPollutionGrid(): void {
-    this.latestPollutionGridDataSource = [];
-    this.latestPollutionGridColumns = [];
 
+
+  private setMeasurements(): void {
+    this.setMeasurementGrid();
+  }
+
+  private setMeasurementGrid(): void {
+    this.resetMeasurementGrid();
+
+
+    let data = new Date();
+    data.setDate(data.getDate() - 7)
+
+
+    this.openAQService.getMeasurements(this.pollutionForm.value.location, data.toISOString() , new Date().toISOString()).subscribe((data: OpenAQResponse) => {
+      const measurements: Measurement[] =  data.results != null 
+      ? data.results.map((result: any) => {
+        return new Measurement(result);
+      })
+      : null;
+
+
+
+      this.measurementGridDataSource = this.gridService.getPollutionGridDataSource(measurements);
+      this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.measurementGridDataSource);
+
+    });
+  }
+
+  private resetMeasurementGrid(): void {
+    this.measurementGridDataSource = [];
+    this.measurementGridGridColumns = [];
   }
 }

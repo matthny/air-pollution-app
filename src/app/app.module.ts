@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonToggleModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatTableModule } from '@angular/material'; 
+import { MatButtonToggleModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatTableModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms'; 
 
 

@@ -10,8 +10,6 @@ export class LatestPollution {
         this.fromJSON(constructorObject)
     }
 
-    
-
     private fromJSON(constructorObject: any) {
         if (constructorObject != null) {
             this.location = constructorObject.location;

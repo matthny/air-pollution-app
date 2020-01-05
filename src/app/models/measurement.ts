@@ -1,10 +1,10 @@
 import { IMeasurementObject } from './utils/interfaces';
 
-export class LatestMeasurement implements IMeasurementObject {
+export class Measurement implements IMeasurementObject {
     public parameter: string;
     public value: number;
     public unit: string;
-    public lastUpdated: Date;
+    public date: Date;
 
     constructor(constructorObject: any) {
         this.fromJSON(constructorObject)
@@ -15,12 +15,13 @@ export class LatestMeasurement implements IMeasurementObject {
             this.parameter = constructorObject.parameter;
             this.value = constructorObject.value;
             this.unit = constructorObject.unit;
-            this.lastUpdated = new Date(constructorObject.lastUpdated);
+            this.date = constructorObject.date != null ? new Date(constructorObject.date.utc) : null;
         } 
+
     }
 
     public getDate(): Date {
-        return this.lastUpdated;
+        return this.date;
     }
 
     public getParameter(): string {
@@ -36,6 +37,5 @@ export class LatestMeasurement implements IMeasurementObject {
         let roundedNumber: number = roundedString != null ? Number(roundedString) : null
         return roundedNumber;
     }
-
 
 }

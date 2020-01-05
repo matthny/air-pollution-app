@@ -29,4 +29,9 @@ export class OpenAQService {
     return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/latest?location=' + location);
   }
 
+  
+  public getMeasurements(location: string, dateTimeFromISO: string, dateTimeToISO: string ):  Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?location=' + location +'&date_from=' + dateTimeFromISO +'&date_to=' + dateTimeToISO);
+  }
+
 }
