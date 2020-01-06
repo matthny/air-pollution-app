@@ -1,13 +1,64 @@
 
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+  
+  display: flex;
+  flex-direction: column;
+}
 
 .menu-container {
-  display: flex;
-  justify-content: center;
-  
+  flex: 1;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+
+    .menu-item {
+    }
+
+    .country-item {
+      padding-right: 25px;
+
+      flex: 1 1 50%;
+    }
+
+    .city-item {
+      flex: 1 1 50%;
+    }
+
+    .location-item {
+      padding-right: 25px;
+
+      flex: 1 1 50%;
+
+
+    }
+
+    .time-item {
+      // padding-bottom: 25px;
+      
+
+      flex: 1 1 50%;
+
+      display: flex;
+      align-self: baseline;
+
+      mat-button-toggle {
+        flex: 1 1 50%;
+      }
+    }
+
+    .go-button-item {
+
+      flex: 1 1 100%;
+    }
+
+  }
 }
 
 .grid-container {
-  display: flex;
-  justify-content: center;
+  flex: 1;
 }
 
