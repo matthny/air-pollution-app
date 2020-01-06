@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IMeasurementObject } from '../models/utils/interfaces';
 import { PollutionGridElement } from '../models/pollution-grid-element';
+import { Parameter } from '../helpers/common-helper';
+import { Column } from '../models/column';
 
 @Injectable({
   providedIn: 'root'
@@ -53,31 +55,31 @@ export class GridService {
         if (measurement.getDate().getTime() === date.getTime()) {
           pollutionGridElement.date = date;
 
-          if (measurement.getParameter() === 'bc') {
+          if (measurement.getParameter() === Parameter.bc) {
             pollutionGridElement.bc = measurement;
           }
 
-          if (measurement.getParameter() === 'co') {
+          if (measurement.getParameter() === Parameter.co) {
             pollutionGridElement.co = measurement;
           }
 
-          if (measurement.getParameter() === 'no2') {
+          if (measurement.getParameter() === Parameter.no2) {
             pollutionGridElement.no2 = measurement;
           }
 
-          if (measurement.getParameter() === 'o3') {
+          if (measurement.getParameter() === Parameter.o3) {
             pollutionGridElement.o3 = measurement;
           }
 
-          if (measurement.getParameter() === 'pm10') {
+          if (measurement.getParameter() === Parameter.pm10) {
             pollutionGridElement.pm10 = measurement;
           }
 
-          if (measurement.getParameter() === 'pm25') {
+          if (measurement.getParameter() === Parameter.pm25) {
             pollutionGridElement.pm25 = measurement;
           }
 
-          if (measurement.getParameter() === 'so2') {
+          if (measurement.getParameter() === Parameter.so2) {
             pollutionGridElement.so2 = measurement;
           }
         }
@@ -97,36 +99,36 @@ export class GridService {
     const pollutionGridColumns: any[] = []
 
     dataSource.forEach((element: PollutionGridElement)  => {
-      if (element.date != null && !pollutionGridColumns.includes('date')) {
-        pollutionGridColumns.push('date');
+      if (element.date != null && !pollutionGridColumns.includes(Column.date)) {
+        pollutionGridColumns.push(Column.date);
       }
 
-      if (element.pm10 != null && !pollutionGridColumns.includes('pm10')) { 
-        pollutionGridColumns.push('pm10');
+      if (element.pm10 != null && !pollutionGridColumns.includes(Column.pm10)) { 
+        pollutionGridColumns.push(Column.pm10);
       }
 
-      if (element.pm25 != null && !pollutionGridColumns.includes('pm25')) { 
-        pollutionGridColumns.push('pm25');
+      if (element.pm25 != null && !pollutionGridColumns.includes(Column.pm25)) { 
+        pollutionGridColumns.push(Column.pm25);
       }
 
-      if (element.bc != null && !pollutionGridColumns.includes('bc')) {
-        pollutionGridColumns.push('bc');
+      if (element.bc != null && !pollutionGridColumns.includes(Column.bc)) {
+        pollutionGridColumns.push(Column.bc);
       }
 
-      if (element.co != null && !pollutionGridColumns.includes('co')) { 
-        pollutionGridColumns.push('co');
+      if (element.co != null && !pollutionGridColumns.includes(Column.co)) { 
+        pollutionGridColumns.push(Column.co);
       }
 
-      if (element.no2 != null && !pollutionGridColumns.includes('no2')) { 
-        pollutionGridColumns.push('no2');
+      if (element.no2 != null && !pollutionGridColumns.includes(Column.no2)) { 
+        pollutionGridColumns.push(Column.no2);
       }
 
-      if (element.o3 != null && !pollutionGridColumns.includes('o3')) { 
-        pollutionGridColumns.push('o3');
+      if (element.o3 != null && !pollutionGridColumns.includes(Column.o3)) { 
+        pollutionGridColumns.push(Column.o3);
       }
 
-      if (element.so2 != null && !pollutionGridColumns.includes('so2')) { 
-        pollutionGridColumns.push('so2');
+      if (element.so2 != null && !pollutionGridColumns.includes(Column.so2)) { 
+        pollutionGridColumns.push(Column.so2);
       }
 
     });

@@ -42,42 +42,42 @@
 
 <div class="grid-container">
   <table  *ngIf="latestPollutionGridDataSource.length > 0" mat-table [dataSource]="latestPollutionGridDataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="date">
+    <ng-container matColumnDef="{{dateColumn}}">
       <th mat-header-cell *matHeaderCellDef> date </th>
       <td mat-cell *matCellDef="let element"> {{element.date ? element.date.toLocaleString() : null}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="bc">
+    <ng-container matColumnDef="{{bcColumn}}">
       <th mat-header-cell *matHeaderCellDef> bc </th>
       <td mat-cell *matCellDef="let element"> {{element.bc ? element.bc.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="co">
+    <ng-container matColumnDef="{{coColumn}}">
       <th mat-header-cell *matHeaderCellDef> co </th>
       <td mat-cell *matCellDef="let element"> {{element.co ? element.co.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="no2">
+    <ng-container matColumnDef="{{no2Column}}">
       <th mat-header-cell *matHeaderCellDef> no2 </th>
       <td mat-cell *matCellDef="let element"> {{element.no2 ? element.no2.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="o3">
+    <ng-container matColumnDef="{{o3Column}}">
       <th mat-header-cell *matHeaderCellDef> o3 </th>
       <td mat-cell *matCellDef="let element"> {{element.o3 ? element.o3.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="pm10">
+    <ng-container matColumnDef="{{pm10Column}}">
       <th mat-header-cell *matHeaderCellDef="let element"> pm10 </th>
       <td mat-cell *matCellDef="let element"> {{element.pm10 ? element.pm10.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="pm25">
+    <ng-container matColumnDef="{{pm25Column}}">
       <th mat-header-cell *matHeaderCellDef> pm25 </th>
       <td mat-cell *matCellDef="let element"> {{element.pm25 ? element.pm25.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="so2">
+    <ng-container matColumnDef="{{so2Column}}">
       <th mat-header-cell *matHeaderCellDef> so2 </th>
       <td mat-cell *matCellDef="let element"> {{element.so2 ? element.so2.getValue(2) : null}} </td>
     </ng-container>
@@ -91,42 +91,42 @@
 <div class="grid-container">
   <table  *ngIf="measurementGridDataSource.length > 0" mat-table [dataSource]="measurementGridDataSource" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="date">
+    <ng-container matColumnDef="{{dateColumn}}">
       <th mat-header-cell *matHeaderCellDef> Date </th>
       <td mat-cell *matCellDef="let element"> {{element.date ? element.date.toLocaleString() : null}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="bc">
+    <ng-container matColumnDef="{{bcColumn}}">
       <th mat-header-cell *matHeaderCellDef> bc </th>
       <td mat-cell *matCellDef="let element"> {{element.bc ? element.bc.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="co">
+    <ng-container matColumnDef="{{coColumn}}">
       <th mat-header-cell *matHeaderCellDef> co </th>
       <td mat-cell *matCellDef="let element"> {{element.co ? element.co.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="no2">
+    <ng-container matColumnDef="{{no2Column}}">
       <th mat-header-cell *matHeaderCellDef> no2 </th>
       <td mat-cell *matCellDef="let element"> {{element.no2 ? element.no2.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="o3">
+    <ng-container matColumnDef="{{o3Column}}">
       <th mat-header-cell *matHeaderCellDef> o3 </th>
       <td mat-cell *matCellDef="let element"> {{element.o3 ? element.o3.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="pm10">
+    <ng-container matColumnDef="{{pm10Column}}">
       <th mat-header-cell *matHeaderCellDef="let element"> pm10 </th>
       <td mat-cell *matCellDef="let element"> {{element.pm10 ? element.pm10.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="pm25">
+    <ng-container matColumnDef="{{pm25Column}}">
       <th mat-header-cell *matHeaderCellDef> pm25 </th>
       <td mat-cell *matCellDef="let element"> {{element.pm25 ? element.pm25.getValue(2) : null}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="so2">
+    <ng-container matColumnDef="{{so2Column}}">
       <th mat-header-cell *matHeaderCellDef> so2 </th>
       <td mat-cell *matCellDef="let element"> {{element.so2 ? element.so2.getValue(2) : null}} </td>
     </ng-container>

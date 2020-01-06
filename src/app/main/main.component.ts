@@ -19,6 +19,7 @@ import { LatestPollution } from '../models/latest-pollution';
 import { LatestMeasurement } from '../models/latest-measurement';
 import { Measurement } from '../models/measurement';
 import { GridService } from '../services/grid.service';
+import { Column } from '../models/column';
 
 @Component({
   selector: 'app-main',
@@ -29,6 +30,23 @@ import { GridService } from '../services/grid.service';
 
 
 export class MainComponent implements OnInit {
+
+  constructor(
+    private openAQService: OpenAQService,
+    private gridService: GridService
+  ) {
+  }
+
+  private dateColumn = Column.date;
+
+  private coColumn = Column.co;
+  private no2Column = Column.no2;
+  private o3Column = Column.o3;
+  private pm10Column = Column.pm10;
+  private pm25Column = Column.pm25;
+  private so2Column = Column.so2;
+  private bcColumn = Column.bc;
+
   private countries: Country[] = [];
   private cities: City[] = [];
   private locations: Location[] = [];
@@ -41,14 +59,9 @@ export class MainComponent implements OnInit {
   private measurementGridDataSource: PollutionGridElement[] = [];
   private measurementGridGridColumns: any[] = [];
 
+
   ngOnInit() {
     this.initialize();
-  }
-
-  constructor(
-      private openAQService: OpenAQService,
-      private gridService: GridService
-    ) {
   }
 
   private initialize(): void {
