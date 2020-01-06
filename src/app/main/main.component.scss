@@ -15,9 +15,6 @@
     display: flex;
     flex-wrap: wrap;
 
-    .menu-item {
-    }
-
     .country-item {
       padding-right: 25px;
 
@@ -32,16 +29,10 @@
       padding-right: 25px;
 
       flex: 1 1 50%;
-
-
     }
 
     .time-item {
-      // padding-bottom: 25px;
-      
-
       flex: 1 1 50%;
-
       display: flex;
       align-self: baseline;
 
@@ -51,7 +42,6 @@
     }
 
     .go-button-item {
-
       flex: 1 1 100%;
     }
 

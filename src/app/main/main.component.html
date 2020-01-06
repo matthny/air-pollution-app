@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="menu-container">  
     <form [formGroup]="pollutionForm" novalidate (ngSubmit)="onGoClick()">
-      <mat-form-field class="menu-item country-item" >
+      <mat-form-field class="country-item" >
         <mat-label>Country</mat-label>
         <mat-select (selectionChange)="onCountrySelected($event)" formControlName="country">
           <mat-option *ngFor="let country of countries" [value]="country.code">
@@ -10,7 +10,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="menu-item city-item" >
+      <mat-form-field class="city-item" >
         <mat-label>City</mat-label>
         <mat-select (selectionChange)="onCitySelected($event)" formControlName="city">
           <mat-option *ngFor="let city of cities" [value]="city.city">
@@ -19,7 +19,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="menu-item location-item" >
+      <mat-form-field class="location-item" >
         <mat-label>Location</mat-label>
         <mat-select formControlName="location">
           <mat-option *ngFor="let location of locations" [value]="location.location">
@@ -28,7 +28,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-button-toggle-group class="menu-item time-item" #dateGroup="matButtonToggleGroup" formControlName="dateType">
+      <mat-button-toggle-group class="time-item" #dateGroup="matButtonToggleGroup" formControlName="dateType">
         <mat-button-toggle value="now" aria-label="Now">
           Now
         </mat-button-toggle>
@@ -37,7 +37,7 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
 
-      <button mat-stroked-button type="submit" class="menu-item go-button-item">Go!</button>
+      <button mat-stroked-button type="submit" class="go-button-item">Go!</button>
     </form>
   </div>
 
