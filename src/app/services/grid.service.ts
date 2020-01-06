@@ -9,7 +9,7 @@ import { Column } from '../models/column';
 })
 export class GridService {
 
-  constructor() { 
+  constructor() {
   }
 
   public getPollutionGridDataSource(measurements: IMeasurementObject[]): PollutionGridElement[] {
@@ -96,18 +96,18 @@ export class GridService {
 
   public getPollutionGridColumns(dataSource: PollutionGridElement[]): any[] {
 
-    const pollutionGridColumns: any[] = []
+    const pollutionGridColumns: any[] = [];
 
     dataSource.forEach((element: PollutionGridElement)  => {
       if (element.date != null && !pollutionGridColumns.includes(Column.date)) {
         pollutionGridColumns.push(Column.date);
       }
 
-      if (element.pm10 != null && !pollutionGridColumns.includes(Column.pm10)) { 
+      if (element.pm10 != null && !pollutionGridColumns.includes(Column.pm10)) {
         pollutionGridColumns.push(Column.pm10);
       }
 
-      if (element.pm25 != null && !pollutionGridColumns.includes(Column.pm25)) { 
+      if (element.pm25 != null && !pollutionGridColumns.includes(Column.pm25)) {
         pollutionGridColumns.push(Column.pm25);
       }
 
@@ -115,19 +115,19 @@ export class GridService {
         pollutionGridColumns.push(Column.bc);
       }
 
-      if (element.co != null && !pollutionGridColumns.includes(Column.co)) { 
+      if (element.co != null && !pollutionGridColumns.includes(Column.co)) {
         pollutionGridColumns.push(Column.co);
       }
 
-      if (element.no2 != null && !pollutionGridColumns.includes(Column.no2)) { 
+      if (element.no2 != null && !pollutionGridColumns.includes(Column.no2)) {
         pollutionGridColumns.push(Column.no2);
       }
 
-      if (element.o3 != null && !pollutionGridColumns.includes(Column.o3)) { 
+      if (element.o3 != null && !pollutionGridColumns.includes(Column.o3)) {
         pollutionGridColumns.push(Column.o3);
       }
 
-      if (element.so2 != null && !pollutionGridColumns.includes(Column.so2)) { 
+      if (element.so2 != null && !pollutionGridColumns.includes(Column.so2)) {
         pollutionGridColumns.push(Column.so2);
       }
 
