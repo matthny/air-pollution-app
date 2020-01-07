@@ -7,7 +7,7 @@ export class Measurement implements IMeasurementObject {
     public date: Date;
 
     constructor(constructorObject: any) {
-        this.fromJSON(constructorObject)
+        this.fromJSON(constructorObject);
     }
 
     private fromJSON(constructorObject: any) {

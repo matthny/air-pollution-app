@@ -7,7 +7,7 @@ export class LatestMeasurement implements IMeasurementObject {
     public lastUpdated: Date;
 
     constructor(constructorObject: any) {
-        this.fromJSON(constructorObject)
+        this.fromJSON(constructorObject);
     }
 
     private fromJSON(constructorObject: any) {

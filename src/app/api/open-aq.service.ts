@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class OpenAQService {
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
   }
 
   public getCountries(): Observable<OpenAQResponse> {
@@ -23,15 +23,15 @@ export class OpenAQService {
     return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/locations?city=' + city + '&limit=' + 1000);
   }
 
-  public getLatestPollution(location: string):  Observable<OpenAQResponse> {
+  public getLatestPollution(location: string): Observable<OpenAQResponse> {
     return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/latest?location=' + location);
   }
 
-  
-  public getMeasurements(location: string, dateTimeFromISO: string, dateTimeToISO: string ):  Observable<OpenAQResponse> {
-    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?location=' 
+
+  public getMeasurements(location: string, dateTimeFromISO: string, dateTimeToISO: string ): Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?location='
       + location + '&date_from='
-      + dateTimeFromISO +'&date_to='
+      + dateTimeFromISO + '&date_to='
       + dateTimeToISO
       + '&limit=' + 2000);
   }
