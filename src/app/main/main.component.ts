@@ -160,12 +160,11 @@ export class MainComponent implements OnInit {
   private setMeasurementGrid(): void {
     this.resetMeasurementGrid();
 
-    const date = new Date();
-    date.setDate(date.getDate() - 7);
+    const fromDate: Date = new Date (new Date().getTime() - (24 * 60 * 60 * 1000)); // 24h from now
 
     this.openAQService.getMeasurements(
       this.pollutionForm.value.location,
-      date.toISOString() ,
+      fromDate.toISOString() ,
       new Date().toISOString()
     )
     .subscribe((data: OpenAQResponse) => {

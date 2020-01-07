@@ -9,20 +9,18 @@ import { Observable } from 'rxjs';
 export class OpenAQService {
 
   constructor(private httpClient: HttpClient) { 
-    
   }
 
   public getCountries(): Observable<OpenAQResponse> {
     return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/countries');
   }
 
-  
   public getCities(countryCode: string): Observable<OpenAQResponse> {
-    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/cities?country=' + countryCode +'&limit=' + 1000);
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/cities?country=' + countryCode + '&limit=' + 1000);
   }
 
   public getLocations(city: string): Observable<OpenAQResponse> {
-    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/locations?city=' + city +'&limit=' + 1000);
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/locations?city=' + city + '&limit=' + 1000);
   }
 
   public getLatestPollution(location: string):  Observable<OpenAQResponse> {
@@ -31,7 +29,11 @@ export class OpenAQService {
 
   
   public getMeasurements(location: string, dateTimeFromISO: string, dateTimeToISO: string ):  Observable<OpenAQResponse> {
-    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?location=' + location +'&date_from=' + dateTimeFromISO +'&date_to=' + dateTimeToISO);
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?location=' 
+      + location + '&date_from='
+      + dateTimeFromISO +'&date_to='
+      + dateTimeToISO
+      + '&limit=' + 2000);
   }
 
 }
