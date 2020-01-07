@@ -9,4 +9,10 @@ export class PollutionGridElement {
     pm10: IMeasurementObject;
     pm25: IMeasurementObject;
     so2: IMeasurementObject;
+
+    public getLocaleDateTime() {
+        return this.date != null
+            ? this.date.toLocaleString([], {year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'})
+            : null;
+    }
 }
