@@ -21,6 +21,7 @@ import { Measurement } from '../models/measurement';
 import { GridService } from '../services/grid.service';
 import { Column } from '../models/column';
 import { PollutionWarningService } from '../services/pollution-warning.service';
+import { Warning } from '../models/warning';
 
 @Component({
   selector: 'app-main',
@@ -57,10 +58,12 @@ export class MainComponent implements OnInit {
   public pollutionForm: FormGroup;
 
   private latestPollutionGridDataSource: PollutionGridElement[] = [];
-  private latestPollutionGridColumns: any[] = [];
+  private latestPollutionGridColumns: Column[] = [];
 
   private measurementGridDataSource: PollutionGridElement[] = [];
-  private measurementGridGridColumns: any[] = [];
+  private measurementGridGridColumns: Column[] = [];
+
+  private warnings: Warning[];
 
 
   ngOnInit() {
@@ -133,10 +136,14 @@ export class MainComponent implements OnInit {
       this.setLatestPollutionGrid(result[0]);
       this.setMeasurementGrid(result[1]);
 
+      this.pollutionWarningService.reset();
       this.pollutionWarningService.addMeasurements(this.latestPollutionGridDataSource);
       this.pollutionWarningService.addMeasurements(this.measurementGridDataSource);
-      this.pollutionWarningService.prepareData();
-    })
+      this.pollutionWarningService.addColumns(this.latestPollutionGridColumns);
+      this.pollutionWarningService.prepareWarnings();
+
+      this.warnings = this.pollutionWarningService.getWarnings();
+    });
   }
 
   private setLatestPollutionGrid(data) {

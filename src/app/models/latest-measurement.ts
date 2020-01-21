@@ -31,7 +31,11 @@ export class LatestMeasurement implements IMeasurementObject {
         return this.unit;
     }
 
-    public getValue(decimalDigits: number): string {
+    public getStringValue(decimalDigits: number): string {
         return this.value != null ? this.value.toFixed(decimalDigits) : null;
+    }
+
+    public getValue(): number {
+        return this.value;
     }
 }

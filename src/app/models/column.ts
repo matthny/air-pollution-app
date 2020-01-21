@@ -1,11 +1,11 @@
-export class Column {
-    public static date = 'date';
+export enum Column {
+    date = 'date',
 
-    public static co = 'co';
-    public static no2 = 'no2';
-    public static o3 = 'o3';
-    public static pm10 = 'pm10';
-    public static pm25 = 'pm25';
-    public static so2 = 'so2';
-    public static bc = 'bc';
+    co = 'co',
+    no2 = 'no2',
+    o3 = 'o3',
+    pm10 = 'pm10',
+    pm25 = 'pm25',
+    so2 = 'so2',
+    bc = 'bc',
 }
