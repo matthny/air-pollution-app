@@ -4,6 +4,14 @@ import { IMeasurementObject } from '../models/utils/interfaces';
 
 
 export class CommonHelper {
+  public static getDistinctDates(dates: Date[]): Date[] {
+    return dates
+      .map((date: Date) => date.getTime())
+      .filter((date: number, i: number, array: number[]) => {
+          return array.indexOf(date) === i;
+      })
+      .map((time: number) => new Date(time));
+  }
 }
 
 export interface OpenAQResponse {

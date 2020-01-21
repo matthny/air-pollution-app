@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 
 import { OpenAQService } from '../api/open-aq.service';
@@ -20,6 +20,7 @@ import { LatestMeasurement } from '../models/latest-measurement';
 import { Measurement } from '../models/measurement';
 import { GridService } from '../services/grid.service';
 import { Column } from '../models/column';
+import { PollutionWarningService } from '../services/pollution-warning.service';
 
 @Component({
   selector: 'app-main',
@@ -33,12 +34,14 @@ export class MainComponent implements OnInit {
 
   constructor(
     private openAQService: OpenAQService,
-    private gridService: GridService
+    private gridService: GridService,
+    private pollutionWarningService: PollutionWarningService
   ) {
   }
 
-  private dateColumn = Column.date;
+  private fromDate: Date = new Date (new Date().getTime() - (24 * 60 * 60 * 1000)); // 24h from now
 
+  private dateColumn = Column.date;
   private coColumn = Column.co;
   private no2Column = Column.no2;
   private o3Column = Column.o3;
@@ -75,7 +78,6 @@ export class MainComponent implements OnInit {
       city: new FormControl(''),
       location: new FormControl(''),
       dateType: new FormControl('now')
-
     });
   }
 
@@ -119,28 +121,44 @@ export class MainComponent implements OnInit {
   }
 
   private onGoClick(): void {
-    this.setLatestPollution();
-    this.setMeasurements();
+    Promise.all([
+      this.openAQService.getLatestPollution(this.pollutionForm.value.location).toPromise(),
+      this.openAQService.getMeasurements(
+        this.pollutionForm.value.location,
+        this.fromDate.toISOString() ,
+        new Date().toISOString()
+      ).toPromise()
+    ])
+    .then((result: OpenAQResponse[]) => {
+      this.setLatestPollutionGrid(result[0]);
+      this.setMeasurementGrid(result[1]);
+
+      this.pollutionWarningService.addMeasurements(this.latestPollutionGridDataSource);
+      this.pollutionWarningService.addMeasurements(this.measurementGridDataSource);
+      this.pollutionWarningService.prepareData();
+    })
   }
 
-  private setLatestPollution(): void {
-    this.setLatestPollutionGrid();
-  }
-
-  private setLatestPollutionGrid(): void {
+  private setLatestPollutionGrid(data) {
     this.resetLatestPollutionGrid();
 
-    this.openAQService.getLatestPollution(this.pollutionForm.value.location).subscribe((data: OpenAQResponse) => {
-      const latestPollution: LatestPollution =  data.results != null ? new LatestPollution(data.results[0]) : null;
+    const latestPollution: LatestPollution =  data.results != null ? new LatestPollution(data.results[0]) : null;
 
-      this.latestPollutionGridDataSource = this.gridService.getPollutionGridDataSource(latestPollution.measurements);
-      this.latestPollutionGridColumns = this.gridService.getPollutionGridColumns(this.latestPollutionGridDataSource);
-    });
+    this.latestPollutionGridDataSource = this.gridService.getPollutionGridDataSource(latestPollution.measurements);
+    this.latestPollutionGridColumns = this.gridService.getPollutionGridColumns(this.latestPollutionGridDataSource);
   }
 
-  private resetLatestPollutionGrid(): void {
-    this.latestPollutionGridDataSource = [];
-    this.latestPollutionGridColumns = [];
+  private setMeasurementGrid(data) {
+    this.resetMeasurementGrid();
+
+    const measurements: Measurement[] =  data.results != null
+      ? data.results.map((result: any) => {
+        return new Measurement(result);
+      })
+      : null;
+
+    this.measurementGridDataSource = this.gridService.getPollutionGridDataSource(measurements);
+    this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.measurementGridDataSource);
   }
 
   private onCountrySelected(e: any): void {
@@ -151,32 +169,9 @@ export class MainComponent implements OnInit {
     this.setLocations(e.value);
   }
 
-
-
-  private setMeasurements(): void {
-    this.setMeasurementGrid();
-  }
-
-  private setMeasurementGrid(): void {
-    this.resetMeasurementGrid();
-
-    const fromDate: Date = new Date (new Date().getTime() - (24 * 60 * 60 * 1000)); // 24h from now
-
-    this.openAQService.getMeasurements(
-      this.pollutionForm.value.location,
-      fromDate.toISOString() ,
-      new Date().toISOString()
-    )
-    .subscribe((data: OpenAQResponse) => {
-      const measurements: Measurement[] =  data.results != null
-        ? data.results.map((result: any) => {
-          return new Measurement(result);
-        })
-        : null;
-
-      this.measurementGridDataSource = this.gridService.getPollutionGridDataSource(measurements);
-      this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.measurementGridDataSource);
-    });
+  private resetLatestPollutionGrid(): void {
+    this.latestPollutionGridDataSource = [];
+    this.latestPollutionGridColumns = [];
   }
 
   private resetMeasurementGrid(): void {

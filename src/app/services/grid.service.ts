@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IMeasurementObject } from '../models/utils/interfaces';
 import { PollutionGridElement } from '../models/pollution-grid-element';
-import { Parameter } from '../helpers/common-helper';
+import { CommonHelper, Parameter } from '../helpers/common-helper';
 import { Column } from '../models/column';
 
 @Injectable({
@@ -13,10 +13,7 @@ export class GridService {
   }
 
   public getPollutionGridDataSource(measurements: IMeasurementObject[]): PollutionGridElement[] {
-
-    const dates: Date[] = this.getDates(measurements);
-    const distinctDates: Date[] = this.getDistinctDates(dates);
-
+    const distinctDates: Date[] = CommonHelper.getDistinctDates(measurements.map(measurment => measurment.getDate()));
     const latestPollutionGridDataSource: PollutionGridElement[] = this.getPollutionGridElements(distinctDates, measurements);
 
     latestPollutionGridDataSource.sort((first: PollutionGridElement , second: PollutionGridElement) => {
@@ -24,25 +21,6 @@ export class GridService {
     });
 
     return latestPollutionGridDataSource;
-  }
-
-  public getDates(measurements: IMeasurementObject[]) {
-    const dates: Date[] = [];
-
-    measurements.forEach((measurement: IMeasurementObject) => {
-      dates.push(measurement.getDate());
-    });
-
-    return dates;
-  }
-
-  public getDistinctDates(dates: Date[]) {
-    return dates
-      .map((date: Date) => date.getTime())
-      .filter((date: number, i: number, array: number[]) => {
-          return array.indexOf(date) === i;
-      })
-      .map((time: number) => new Date(time));
   }
 
   public getPollutionGridElements(dates: Date[], measurements: IMeasurementObject[]): PollutionGridElement[] {
