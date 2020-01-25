@@ -77,6 +77,14 @@ export class PollutionWarningService {
       this.warnings.push(this.o3Warning);
     }
 
+    if (this.columns.includes(Column.no2)) {
+      this.no2Warning = new Warning(
+        Parameter.no2,
+        this.checkAirPollutionCategory(Parameter.no2, this.calculateAverage(1, Parameter.no2))
+      );
+      this.warnings.push(this.no2Warning);
+    }
+
   }
 
   public getWarnings(): Warning[] {
@@ -170,6 +178,26 @@ export class PollutionWarningService {
         return 'Unhealthy';
       } else if (pollution > 208.82) {
         return 'Very unhealthy';
+      } else {
+        return 'Out of range';
+      }
+    }
+
+    if (parameter === Parameter.no2) {
+      if (pollution > 0 && pollution <= 101.52) {
+        return 'Good';
+      } else if (pollution > 101.52 && pollution <= 189.88) {
+        return 'Moderate';
+      } else if (pollution > 189.88 && pollution <= 678.68) {
+        return 'Unhealthy for Sensitive Groups';
+      } else if (pollution > 678.68 && pollution <= 1222) {
+        return 'Unhealthy';
+      } else if (pollution > 1222 && pollution <= 2350) {
+        return 'Very unhealthy';
+      } else if (pollution > 2350 && pollution <= 3102) {
+        return 'Hazardous';
+      } else if (pollution > 3102 && pollution < 3852.12) {
+        return 'Very hazardous';
       } else {
         return 'Out of range';
       }
