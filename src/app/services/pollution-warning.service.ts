@@ -50,6 +50,14 @@ export class PollutionWarningService {
     this.measurements.push(...measurments);
   }
 
+  public addColumns(columns: Column[]): void {
+    this.columns = columns;
+  }
+
+  public getWarnings(): Warning[] {
+    return this.warnings;
+  }
+
   public prepareWarnings(): void {
     this.setDistinctMeasurements();
 
@@ -100,14 +108,6 @@ export class PollutionWarningService {
       );
       this.warnings.push(this.coWarning);
     }
-  }
-
-  public getWarnings(): Warning[] {
-    return this.warnings;
-  }
-
-  public addColumns(columns: Column[]): void {
-    this.columns = columns;
   }
 
   public setDistinctMeasurements(): void {
