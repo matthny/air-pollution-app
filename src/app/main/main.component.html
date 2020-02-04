@@ -28,7 +28,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-button-toggle-group class="time-item" #dateGroup="matButtonToggleGroup" formControlName="dateType">
+      <mat-button-toggle-group (change)="onDateToggleChange()" class="time-item" #dateGroup="matButtonToggleGroup" formControlName="dateType">
         <mat-button-toggle value="now" aria-label="Now">
           Now
         </mat-button-toggle>
@@ -37,12 +37,26 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
 
+      <div class="date-pickers" *ngIf="showDatePicker == true">
+        <mat-form-field class="picker-from">
+          <input matInput [matDatepicker]="fromDatePicker" placeholder="Choose a date" formControlName="fromDate">
+          <mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #fromDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="picker-to">
+          <input matInput [matDatepicker]="toDatePicker" placeholder="Choose a date"  formControlName="toDate">
+          <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #toDatePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
       <button mat-stroked-button type="submit" class="go-button-item">Go!</button>
     </form>
   </div>
 
   <div class="grid-container">
-    <table  *ngIf="latestPollutionGridDataSource.length > 0" mat-table [dataSource]="latestPollutionGridDataSource" class="mat-elevation-z8">
+    <table  *ngIf="archiveView === false && latestPollutionGridDataSource.length > 0" mat-table [dataSource]="latestPollutionGridDataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="{{dateColumn}}">
         <th mat-header-cell *matHeaderCellDef> Date </th>
         <td mat-cell *matCellDef="let element"> {{element.getLocaleDateTime()}} </td>
@@ -87,13 +101,13 @@
       <tr mat-row *matRowDef="let row; columns: latestPollutionGridColumns;"></tr>
     </table>
 
-    <div *ngIf="measurementGridDataSource.length > 0">  
+    <div *ngIf="archiveView === false && measurementGridDataSource.length > 0">  
 
       <p *ngFor="let item of warnings"> {{item.parameter}}: {{item.warning}} </p>
 
     </div>
 
-    <table  *ngIf="measurementGridDataSource.length > 0" mat-table [dataSource]="measurementGridDataSource" class="mat-elevation-z8">
+    <table *ngIf="measurementGridDataSource.length > 0" mat-table [dataSource]="measurementGridDataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="{{dateColumn}}">
         <th mat-header-cell *matHeaderCellDef> Date </th>
         <td mat-cell *matCellDef="let element"> {{element.getLocaleDateTime()}} </td>

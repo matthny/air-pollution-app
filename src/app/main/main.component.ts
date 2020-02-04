@@ -40,7 +40,11 @@ export class MainComponent implements OnInit {
   ) {
   }
 
-  private fromDate: Date = new Date (new Date().getTime() - (24 * 60 * 60 * 1000)); // 24h from now
+  private archiveView: boolean;
+
+  private showDatePicker: boolean;
+  private fromDate: Date;
+  private toDate: Date;
 
   private dateColumn = Column.date;
   private coColumn = Column.co;
@@ -80,7 +84,9 @@ export class MainComponent implements OnInit {
       country: new FormControl(''),
       city: new FormControl(''),
       location: new FormControl(''),
-      dateType: new FormControl('now')
+      dateType: new FormControl('now'),
+      fromDate: new FormControl(''),
+      toDate: new FormControl('')
     });
   }
 
@@ -123,13 +129,38 @@ export class MainComponent implements OnInit {
     });
   }
 
+  private setMeasurementsRequestDates(): void {
+    if (this.pollutionForm.value.dateType === 'now') {
+      this.fromDate = new Date(new Date().getTime() - (24 * 60 * 60 * 1000)); // 24h from now
+      this.toDate = new Date();
+    } else if (this.pollutionForm.value.dateType === 'dateRange') {
+      this.fromDate = CommonHelper.getFromDateUTC(this.pollutionForm.value.fromDate);
+      this.toDate = CommonHelper.getToDateUTC(this.pollutionForm.value.toDate);
+    }
+  }
+
+  private setArchiveView(): void {
+    if (this.pollutionForm.value.dateType === 'now') {
+      this.archiveView = false;
+    } else if (this.pollutionForm.value.dateType === 'dateRange') {
+      this.archiveView = true;
+    }
+  }
+
+  private checkViewType(): void {
+    this.setMeasurementsRequestDates();
+    this.setArchiveView();
+  }
+
   private onGoClick(): void {
+    this.checkViewType();
+
     Promise.all([
       this.openAQService.getLatestPollution(this.pollutionForm.value.location).toPromise(),
       this.openAQService.getMeasurements(
         this.pollutionForm.value.location,
         this.fromDate.toISOString() ,
-        new Date().toISOString()
+        this.toDate.toISOString()
       ).toPromise()
     ])
     .then((result: OpenAQResponse[]) => {
@@ -141,7 +172,6 @@ export class MainComponent implements OnInit {
       this.pollutionWarningService.addMeasurements(this.measurementGridDataSource);
       this.pollutionWarningService.addColumns(this.latestPollutionGridColumns);
       this.pollutionWarningService.prepareWarnings();
-
       this.warnings = this.pollutionWarningService.getWarnings();
     });
   }
@@ -184,5 +214,13 @@ export class MainComponent implements OnInit {
   private resetMeasurementGrid(): void {
     this.measurementGridDataSource = [];
     this.measurementGridGridColumns = [];
+  }
+
+  private onDateToggleChange(): void {
+    if (this.pollutionForm.value.dateType === 'now') {
+      this.showDatePicker = false;
+    } else if (this.pollutionForm.value.dateType === 'dateRange') {
+      this.showDatePicker = true;
+    }
   }
 }

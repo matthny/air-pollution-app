@@ -41,8 +41,23 @@
       }
     }
 
+    .date-pickers {
+      flex: 1;
+      display: flex;
+
+      .picker-from {
+        padding-right: 25px;
+        flex: 1 1 50%;
+      }
+
+      .picker-to {
+        flex: 1 1 50%;
+      }
+    }
+
     .go-button-item {
       flex: 1 1 100%;
+      margin-bottom: 20px;
     }
 
   }

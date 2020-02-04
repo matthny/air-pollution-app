@@ -12,6 +12,31 @@ export class CommonHelper {
       })
       .map((time: number) => new Date(time));
   }
+
+  public static getFromDateUTC(date: Date): Date {
+    return new Date(
+      Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        0,
+      )
+    );
+  }
+
+  public static getToDateUTC(date: Date): Date {
+    return new Date(
+      Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        // OpenAQ API returns 1 hour more
+        22,
+        0,
+        0
+      )
+    );
+  }
 }
 
 export interface OpenAQResponse {
