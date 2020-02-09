@@ -4,24 +4,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 
 
-import { OpenAQService } from '../api/open-aq.service';
-import { OpenAQResponse } from '../helpers/common-helper';
+import { OpenAQService } from '../../api/open-aq.service';
+import { OpenAQResponse } from '../../helpers/common-helper';
 
-import { PollutionGridElement } from '../models/pollution-grid-element';
+import { PollutionGridElement } from '../../models/pollution-grid-element';
 
 
-import { CommonHelper} from '../helpers/common-helper';
+import { CommonHelper} from '../../helpers/common-helper';
 
-import { Country } from '../models/country';
-import { City } from '../models/city';
-import { Location } from '../models/location';
-import { LatestPollution } from '../models/latest-pollution';
-import { LatestMeasurement } from '../models/latest-measurement';
-import { Measurement } from '../models/measurement';
-import { GridService } from '../services/grid.service';
-import { Column } from '../models/column';
-import { PollutionWarningService } from '../services/pollution-warning.service';
-import { Warning } from '../models/warning';
+import { Country } from '../../models/country';
+import { City } from '../../models/city';
+import { Location } from '../../models/location';
+import { LatestPollution } from '../../models/latest-pollution';
+import { LatestMeasurement } from '../../models/latest-measurement';
+import { Measurement } from '../../models/measurement';
+import { GridService } from '../../services/grid.service';
+import { Column } from '../../models/column';
+import { PollutionWarningService } from '../../services/pollution-warning.service';
+import { Warning } from '../../models/warning';
 
 @Component({
   selector: 'app-main',
