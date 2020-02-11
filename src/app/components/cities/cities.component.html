@@ -10,6 +10,15 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field class="parameter-item">
+        <mat-label>Parameter</mat-label>
+        <mat-select formControlName="parameter">
+          <mat-option *ngFor="let parameter of PARAMETERS" [value]="parameter">
+            {{parameter}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-button-toggle-group (change)="onDateToggleChange()" class="time-item" #dateGroup="matButtonToggleGroup" formControlName="dateType">
         <mat-button-toggle value="now" aria-label="Now">
           Now

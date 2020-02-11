@@ -32,6 +32,16 @@ export class CitiesComponent implements OnInit {
     Column.bc
   ];
 
+  private PARAMETERS: Parameter[] = [
+    Parameter.co,
+    Parameter.no2,
+    Parameter.o3,
+    Parameter.pm10,
+    Parameter.pm25,
+    Parameter.so2,
+    Parameter.bc
+  ];
+
   private showDatePicker: boolean;
   private fromDate: Date;
   private toDate: Date;
@@ -46,7 +56,6 @@ export class CitiesComponent implements OnInit {
   private bcColumn = Column.bc;
 
   private countries: Country[] = [];
-
 
   private citiesPollutionForm: FormGroup;
 
@@ -66,8 +75,7 @@ export class CitiesComponent implements OnInit {
   private setCitiesPollutionForm(): void {
     this.citiesPollutionForm = new FormGroup({
       country: new FormControl(''),
-      // city: new FormControl(''),
-      // location: new FormControl(''),
+      parameter: new FormControl(''),
       dateType: new FormControl('now'),
       fromDate: new FormControl(''),
       toDate: new FormControl('')
@@ -104,7 +112,7 @@ export class CitiesComponent implements OnInit {
     Promise.all([
       this.openAQService.getMeasurementsForCountry(
         this.citiesPollutionForm.value.country,
-        Parameter.pm10,
+        this.citiesPollutionForm.value.parameter,
         this.fromDate.toISOString() ,
         this.toDate.toISOString()
       ).toPromise()
@@ -131,7 +139,10 @@ export class CitiesComponent implements OnInit {
       })
       : null;
 
-    this.measurementGridDataSource = this.gridService.getPollutionGridElementsForCountry(Parameter.pm10, measurements);
+    this.measurementGridDataSource = this.gridService.getPollutionGridElementsForCountry(
+      this.citiesPollutionForm.value.parameter,
+      measurements
+    );
     this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.COLUMNS, this.measurementGridDataSource);
   }
 
