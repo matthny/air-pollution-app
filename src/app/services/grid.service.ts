@@ -3,6 +3,7 @@ import { IMeasurementObject } from '../models/utils/interfaces';
 import { PollutionGridElement } from '../models/pollution-grid-element';
 import { CommonHelper, Parameter } from '../helpers/common-helper';
 import { Column } from '../models/column';
+import { Measurement } from '../models/measurement';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class GridService {
 
   public getPollutionGridDataSource(measurements: IMeasurementObject[]): PollutionGridElement[] {
     const distinctDates: Date[] = CommonHelper.getDistinctDates(measurements.map(measurment => measurment.getDate()));
-    const latestPollutionGridDataSource: PollutionGridElement[] = this.getPollutionGridElements(distinctDates, measurements);
+    const latestPollutionGridDataSource: PollutionGridElement[] = this.getPollutionGridElementsForLocation(distinctDates, measurements);
 
     latestPollutionGridDataSource.sort((first: PollutionGridElement , second: PollutionGridElement) => {
       return second.date.getTime() - first.date.getTime();
@@ -23,7 +24,7 @@ export class GridService {
     return latestPollutionGridDataSource;
   }
 
-  public getPollutionGridElements(dates: Date[], measurements: IMeasurementObject[]): PollutionGridElement[] {
+  public getPollutionGridElementsForLocation(dates: Date[], measurements: IMeasurementObject[]): PollutionGridElement[] {
     const elements: PollutionGridElement[] = [];
 
     dates.forEach((date: Date) => {
@@ -71,6 +72,20 @@ export class GridService {
     return elements;
   }
 
+  public getPollutionGridElementsForCountry(parameter: Parameter , measurements: Measurement[]): PollutionGridElement[] {
+    return measurements.map((measurement: Measurement): PollutionGridElement => {
+      const result: PollutionGridElement = new PollutionGridElement();
+
+      result.date = measurement.getDate();
+      result.city = measurement.city;
+      result.country = measurement.country;
+      result[parameter] = measurement;
+
+      return result;
+    });
+  }
+
+
 
   public getPollutionGridColumns(dataSource: PollutionGridElement[]): any[] {
 
@@ -107,6 +122,10 @@ export class GridService {
 
       if (element.so2 != null && !pollutionGridColumns.includes(Column.so2)) {
         pollutionGridColumns.push(Column.so2);
+      }
+
+      if (element.city != null && !pollutionGridColumns.includes(Column.city)) {
+        pollutionGridColumns.push(Column.city);
       }
 
     });

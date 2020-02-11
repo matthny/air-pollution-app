@@ -5,6 +5,8 @@ export class Measurement implements IMeasurementObject {
     public value: number;
     public unit: string;
     public date: Date;
+    public city: string;
+    public country: string;
 
     constructor(constructorObject: any) {
         this.fromJSON(constructorObject);
@@ -16,6 +18,8 @@ export class Measurement implements IMeasurementObject {
             this.value = constructorObject.value;
             this.unit = constructorObject.unit;
             this.date = constructorObject.date != null ? new Date(constructorObject.date.utc) : null;
+            this.city = constructorObject.city;
+            this.country = constructorObject.country;
         }
     }
 

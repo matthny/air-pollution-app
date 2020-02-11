@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { OpenAQResponse } from '../helpers/common-helper';
+import { OpenAQResponse, Parameter } from '../helpers/common-helper';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,12 +28,27 @@ export class OpenAQService {
   }
 
 
-  public getMeasurements(location: string, dateTimeFromISO: string, dateTimeToISO: string ): Observable<OpenAQResponse> {
-    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?location='
-      + location + '&date_from='
-      + dateTimeFromISO + '&date_to='
-      + dateTimeToISO
+  public getMeasurementsForLocation(location: string, dateTimeFromISO: string, dateTimeToISO: string ): Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?'
+      + 'location=' + location
+      + '&date_from=' + dateTimeFromISO
+      + '&date_to=' + dateTimeToISO
       + '&limit=' + 2000);
+  }
+
+  public getMeasurementsForCountry(
+      country: string,
+      parameter: Parameter,
+      dateTimeFromISO: string,
+      dateTimeToISO: string
+    ): Observable<OpenAQResponse> {
+    return this.httpClient.get<OpenAQResponse>('https://api.openaq.org/v1/measurements?'
+      + 'country=' + country
+      + '&parameter=' + parameter
+      + '&date_from=' + dateTimeFromISO
+      + '&date_to=' + dateTimeToISO
+      + '&limit=' + 2000
+      + '&order_by=value&sort=desc');
   }
 
 }

@@ -157,7 +157,7 @@ export class MainComponent implements OnInit {
 
     Promise.all([
       this.openAQService.getLatestPollution(this.pollutionForm.value.location).toPromise(),
-      this.openAQService.getMeasurements(
+      this.openAQService.getMeasurementsForLocation(
         this.pollutionForm.value.location,
         this.fromDate.toISOString() ,
         this.toDate.toISOString()

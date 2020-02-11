@@ -8,4 +8,6 @@ export enum Column {
     pm25 = 'pm25',
     so2 = 'so2',
     bc = 'bc',
+
+    city = 'city'
 }
