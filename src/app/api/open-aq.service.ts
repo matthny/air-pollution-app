@@ -32,7 +32,7 @@ export class OpenAQService {
       + 'location=' + location
       + '&date_from=' + dateTimeFromISO
       + '&date_to=' + dateTimeToISO
-      + '&limit=' + 2000);
+      + '&limit=' + 10000);
   }
 
   public getMeasurementsForCountry(
@@ -46,8 +46,7 @@ export class OpenAQService {
       + '&parameter=' + parameter
       + '&date_from=' + dateTimeFromISO
       + '&date_to=' + dateTimeToISO
-      + '&limit=' + 2000
+      + '&limit=' + 10000
       + '&order_by=value&sort=desc');
   }
-
 }

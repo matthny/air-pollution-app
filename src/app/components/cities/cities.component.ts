@@ -139,10 +139,12 @@ export class CitiesComponent implements OnInit {
       })
       : null;
 
-    this.measurementGridDataSource = this.gridService.getPollutionGridElementsForCountry(
+    this.measurementGridDataSource = this.gridService.getCitiesGridDataSource(
       this.citiesPollutionForm.value.parameter,
       measurements
     );
+
+
     this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.COLUMNS, this.measurementGridDataSource);
   }
 

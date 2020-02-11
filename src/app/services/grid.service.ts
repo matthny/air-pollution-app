@@ -72,7 +72,7 @@ export class GridService {
     return elements;
   }
 
-  public getPollutionGridElementsForCountry(parameter: Parameter , measurements: Measurement[]): PollutionGridElement[] {
+  public getPollutionGridElementsForCountry(parameter: Parameter, measurements: Measurement[]): PollutionGridElement[] {
     return measurements.map((measurement: Measurement): PollutionGridElement => {
       const result: PollutionGridElement = new PollutionGridElement();
 
@@ -85,7 +85,20 @@ export class GridService {
     });
   }
 
+  public getCitiesGridDataSource(parameter: Parameter, measurements: Measurement[]): PollutionGridElement[] {
+    const elements: PollutionGridElement[] = this.getPollutionGridElementsForCountry(parameter, measurements);
+    const distinctCities: Set<string> = new Set(elements.map(element => element.city));
 
+    const result: PollutionGridElement[] = [];
+
+    distinctCities.forEach((city: string) => {
+      result.push(elements.find((element: PollutionGridElement) => {
+        return element.city === city;
+      }));
+    });
+
+    return result;
+  }
 
   public getPollutionGridAvailableColumns(dataSource: PollutionGridElement[]): any[] {
 
@@ -138,6 +151,7 @@ export class GridService {
 
     return availableColumns.filter((column: Column) => moduleColumns.includes(column));
   }
+
 
 
 }
