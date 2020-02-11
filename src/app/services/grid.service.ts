@@ -87,7 +87,7 @@ export class GridService {
 
 
 
-  public getPollutionGridColumns(dataSource: PollutionGridElement[]): any[] {
+  public getPollutionGridAvailableColumns(dataSource: PollutionGridElement[]): any[] {
 
     const pollutionGridColumns: any[] = [];
 
@@ -132,5 +132,12 @@ export class GridService {
 
     return pollutionGridColumns;
 }
+
+  public getPollutionGridColumns(moduleColumns: Column[], dataSource: PollutionGridElement[]): Column[] {
+    const availableColumns = this.getPollutionGridAvailableColumns(dataSource);
+
+    return availableColumns.filter((column: Column) => moduleColumns.includes(column));
+  }
+
 
 }

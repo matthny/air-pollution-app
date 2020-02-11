@@ -40,6 +40,18 @@ export class MainComponent implements OnInit {
   ) {
   }
 
+  private COLUMNS: Column[] = [
+    Column.date,
+    Column.co,
+    Column.no2,
+    Column.o3,
+    Column.pm10,
+    Column.pm25,
+    Column.so2,
+    Column.bc
+  ];
+
+
   private archiveView: boolean;
 
   private showDatePicker: boolean;
@@ -182,7 +194,7 @@ export class MainComponent implements OnInit {
     const latestPollution: LatestPollution =  data.results != null ? new LatestPollution(data.results[0]) : null;
 
     this.latestPollutionGridDataSource = this.gridService.getPollutionGridDataSource(latestPollution.measurements);
-    this.latestPollutionGridColumns = this.gridService.getPollutionGridColumns(this.latestPollutionGridDataSource);
+    this.latestPollutionGridColumns = this.gridService.getPollutionGridColumns(this.COLUMNS, this.latestPollutionGridDataSource);
   }
 
   private setMeasurementGrid(data) {
@@ -195,7 +207,7 @@ export class MainComponent implements OnInit {
       : null;
 
     this.measurementGridDataSource = this.gridService.getPollutionGridDataSource(measurements);
-    this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.measurementGridDataSource);
+    this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.COLUMNS, this.measurementGridDataSource);
   }
 
   private onCountrySelected(e: any): void {

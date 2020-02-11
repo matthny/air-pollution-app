@@ -21,6 +21,17 @@ export class CitiesComponent implements OnInit {
   ) {
   }
 
+  private COLUMNS: Column[] = [
+    Column.city,
+    Column.co,
+    Column.no2,
+    Column.o3,
+    Column.pm10,
+    Column.pm25,
+    Column.so2,
+    Column.bc
+  ];
+
   private showDatePicker: boolean;
   private fromDate: Date;
   private toDate: Date;
@@ -121,9 +132,7 @@ export class CitiesComponent implements OnInit {
       : null;
 
     this.measurementGridDataSource = this.gridService.getPollutionGridElementsForCountry(Parameter.pm10, measurements);
-    this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.measurementGridDataSource);
-    this.measurementGridGridColumns.splice(0,1);
-    
+    this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.COLUMNS, this.measurementGridDataSource);
   }
 
   private resetMeasurementGrid(): void {
