@@ -9,15 +9,18 @@ import { CitiesComponent } from './components/cities/cities.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonToggleModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatNativeDateModule, MatSelectModule, MatTableModule } from '@angular/material';
+import { MatButtonToggleModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatIconModule, MatNativeDateModule, MatSelectModule, MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    CitiesComponent
+    CitiesComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,12 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     ReactiveFormsModule,
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
