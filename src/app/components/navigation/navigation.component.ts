@@ -12,7 +12,7 @@ import { Parameter } from 'src/app/helpers/common-helper';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
   @ViewChild('drawer')
@@ -42,8 +42,8 @@ export class NavigationComponent {
       const data: PopupData = {parameter: parameter};
 
       const popupRef = this.popup.open(PopupComponent, {
-        width: '100%',
-        height: '100%',
+        width: '100vw',
+        height: '100vh',
         data: data
       });
 
