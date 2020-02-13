@@ -13,6 +13,7 @@
             "app",
             "kebab-case"
         ],
-        "no-inferrable-types": false
+        "no-inferrable-types": false,
+        "object-literal-shorthand": false
     }
 }
