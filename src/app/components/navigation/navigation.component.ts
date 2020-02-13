@@ -2,7 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav, MatDialog } from '@angular/material';
+
+import { PopupComponent, PopupData } from '../popup/popup.component';
+import { Parameter } from 'src/app/helpers/common-helper';
+
+
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +23,10 @@ export class NavigationComponent {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    public popup: MatDialog
+  ) {}
 
     private handleClick(): void {
       this.isHandset$
@@ -28,5 +36,19 @@ export class NavigationComponent {
             this.drawer.close();
           }
         });
+    }
+
+    public openPopup(parameter: Parameter): void {
+      const data: PopupData = {parameter: parameter};
+
+      const popupRef = this.popup.open(PopupComponent, {
+        width: '100%',
+        height: '100%',
+        data: data
+      });
+
+      popupRef.afterClosed().subscribe(result => {
+
+      });
     }
 }
