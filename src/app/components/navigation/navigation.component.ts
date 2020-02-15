@@ -45,6 +45,7 @@ export class NavigationComponent {
         width: '100vw',
         height: '100vh',
         minWidth: '100vw',
+        panelClass: 'app-no-radius-mat-dialog-container',
         data: data
       });
 
