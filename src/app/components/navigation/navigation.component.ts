@@ -2,10 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
-import { MatSidenav, MatDialog } from '@angular/material';
+import { MatSidenav, MatDialog, MatDialogRef } from '@angular/material';
 
 import { PopupComponent, PopupData } from '../popup/popup.component';
-import { Parameter } from 'src/app/helpers/common-helper';
+import { Parameter, WikiResponse } from 'src/app/helpers/common-helper';
+import { WikiService } from 'src/app/api/wiki.service';
+import { Wiki } from 'src/app/models/wiki';
 
 
 
@@ -25,7 +27,8 @@ export class NavigationComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    public popup: MatDialog
+    public popup: MatDialog,
+    private wikiService: WikiService
   ) {}
 
     private handleClick(): void {
@@ -39,18 +42,36 @@ export class NavigationComponent {
     }
 
     public openPopup(parameter: Parameter): void {
-      const data: PopupData = {parameter: parameter};
 
-      const popupRef = this.popup.open(PopupComponent, {
-        width: '100vw',
-        height: '100vh',
-        minWidth: '100vw',
-        panelClass: 'app-no-radius-mat-dialog-container',
-        data: data
+
+
+
+      const data: PopupData = {wiki: null};
+      let popupRef: MatDialogRef<PopupComponent, any>;
+
+      this.wikiService.getWiki(parameter).toPromise().then((result: WikiResponse) => {
+
+
+        data.wiki = new Wiki(result);
+
+
+        popupRef = this.popup.open(PopupComponent, {
+          width: '100vw',
+          height: '100vh',
+          minWidth: '100vw',
+          panelClass: 'app-no-radius-mat-dialog-container',
+          data: data
+        });
       });
 
-      popupRef.afterClosed().subscribe(result => {
 
-      });
+
+
+
+
+
+      // popupRef.afterClosed().subscribe(result => {
+
+      // });
     }
 }

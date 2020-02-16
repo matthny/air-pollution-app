@@ -8,8 +8,13 @@
     <mat-nav-list>
       <a mat-list-item routerLink="main" routerLinkActive="active">Current</a>
       <a mat-list-item routerLink="cities" routerLinkActive="active">Cities</a>
-      <button mat-raised-button (click)="openPopup('pm10')">Wiki</button>
-      <button mat-raised-button (click)="openPopup('pm25')">Wiki</button>
+      <button mat-raised-button (click)="openPopup('pm10')">pm10</button>
+      <button mat-raised-button (click)="openPopup('pm25')">pm25</button>
+      <button mat-raised-button (click)="openPopup('bc')">bc</button>
+      <button mat-raised-button (click)="openPopup('no2')">no2</button>
+      <button mat-raised-button (click)="openPopup('so2')">so2</button>
+      <button mat-raised-button (click)="openPopup('co')">co</button>
+      <button mat-raised-button (click)="openPopup('o3')">o3</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

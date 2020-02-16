@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MatDialogTitle, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Parameter } from 'src/app/helpers/common-helper';
+import { Wiki } from 'src/app/models/wiki';
 
 export interface PopupData {
-  parameter: Parameter;
+  wiki: Wiki;
 }
 
 @Component({
@@ -21,4 +22,6 @@ export class PopupComponent {
   onNoClick(): void {
     this.popupRef.close();
   }
+
+  private wikihtml: string = this.data.wiki.extractHTML;
 }
