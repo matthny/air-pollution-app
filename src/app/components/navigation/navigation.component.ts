@@ -62,16 +62,10 @@ export class NavigationComponent {
           panelClass: 'app-no-radius-mat-dialog-container',
           data: data
         });
+
+        popupRef.componentInstance.createDiv();
+
       });
 
-
-
-
-
-
-
-      // popupRef.afterClosed().subscribe(result => {
-
-      // });
     }
 }

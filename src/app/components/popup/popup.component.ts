@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MatDialogTitle, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Parameter } from 'src/app/helpers/common-helper';
 import { Wiki } from 'src/app/models/wiki';
@@ -15,6 +15,8 @@ export interface PopupData {
 
 export class PopupComponent {
 
+  private wiki: string = this.data.wiki.extractHTML;
+
   constructor(
     public popupRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PopupData) {}
@@ -23,5 +25,17 @@ export class PopupComponent {
     this.popupRef.close();
   }
 
-  private wikihtml: string = this.data.wiki.extractHTML;
+
+  public createDiv() {
+    let newDiv: HTMLBodyElement = document.createElement("body");
+    newDiv.innerHTML = this.wiki;
+  
+    //let myDiv: Node = document.getElementsByTagName('title');
+    document.body = newDiv;
+
+  }
+
+
+
+
 }
