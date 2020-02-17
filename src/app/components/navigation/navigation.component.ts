@@ -44,7 +44,6 @@ export class NavigationComponent {
       const popupRef = this.popup.open(PopupComponent, {
         width: '100vw',
         height: '100vh',
-        minWidth: '100vw',
         data: data
       });
 
