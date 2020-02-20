@@ -39,7 +39,10 @@ export class NavigationComponent {
     }
 
     public openPopup(parameter: Parameter): void {
-      const data: PopupData = {parameter: parameter};
+      const data: PopupData = {
+        parameter: parameter,
+        title: PopupComponent.getTitle(parameter)
+      };
 
       const popupRef = this.popup.open(PopupComponent, {
         width: '100vw',
