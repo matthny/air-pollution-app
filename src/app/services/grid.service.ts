@@ -109,6 +109,10 @@ export class GridService {
         pollutionGridColumns.push(Column.date);
       }
 
+      if (element.city != null && !pollutionGridColumns.includes(Column.city)) {
+        pollutionGridColumns.push(Column.city);
+      }
+
       if (element.pm10 != null && !pollutionGridColumns.includes(Column.pm10)) {
         pollutionGridColumns.push(Column.pm10);
       }
@@ -136,11 +140,6 @@ export class GridService {
       if (element.so2 != null && !pollutionGridColumns.includes(Column.so2)) {
         pollutionGridColumns.push(Column.so2);
       }
-
-      if (element.city != null && !pollutionGridColumns.includes(Column.city)) {
-        pollutionGridColumns.push(Column.city);
-      }
-
     });
 
     return pollutionGridColumns;
