@@ -49,9 +49,5 @@ export class NavigationComponent {
         height: '100vh',
         data: data
       });
-
-      popupRef.afterClosed().subscribe(result => {
-
-      });
     }
 }

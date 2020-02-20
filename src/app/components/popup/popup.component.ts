@@ -37,9 +37,4 @@ export class PopupComponent {
       return 'Sulfur dioxide';
     }
   }
-
-  // TODO: probably not needed
-  onNoClick(): void {
-    this.popupRef.close();
-  }
 }
