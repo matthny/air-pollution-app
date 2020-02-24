@@ -6,9 +6,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 * {
     box-sizing: border-box;
 }
-
-.app-no-radius-mat-dialog-container {
-    .mat-dialog-container {
-        border-radius: 0px;
-    }
-}
