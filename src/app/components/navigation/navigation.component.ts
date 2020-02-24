@@ -19,6 +19,7 @@ import { Wiki } from 'src/app/models/wiki';
 export class NavigationComponent {
   @ViewChild('drawer')
   private drawer: MatSidenav;
+  private isHandset: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -37,6 +38,9 @@ export class NavigationComponent {
         .subscribe((isHandset: boolean) => {
           if (isHandset) {
             this.drawer.close();
+            this.isHandset = true;
+          } else if (!isHandset) {
+            this.isHandset = false;
           }
         });
     }
@@ -51,12 +55,12 @@ export class NavigationComponent {
         };
 
         popupRef = this.popup.open(PopupComponent, {
-          width: '100vw',
-          height: '100vh',
+          width: PopupComponent.getWidth(this.isHandset),
+          height: PopupComponent.getHeight(this.isHandset),
           data: data
         });
 
-        popupRef.componentInstance.createDiv();
+        popupRef.componentInstance.CreateWikiParagraph();
       });
 
     }

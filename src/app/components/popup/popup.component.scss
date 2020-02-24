@@ -1,0 +1,15 @@
+.popup-container {
+  .popup-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  title {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .wiki-paragraph {
+    line-height: 2rem;
+  }
+}

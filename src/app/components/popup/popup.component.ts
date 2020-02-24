@@ -40,18 +40,19 @@ export class PopupComponent {
     }
   }
 
-  onNoClick(): void {
-    this.popupRef.close();
+
+
+  public static getWidth(isHandset: boolean): string {
+    return isHandset ? '90vw' : '60vw';
   }
 
+  public static getHeight(isHandset: boolean): string {
+    return isHandset ? '95vh' : '60vh';
+  }
 
-  public createDiv() {
-
-  
-    //let myDiv: Node = document.getElementsByTagName('title');
+  public CreateWikiParagraph() {
     document.getElementById('created-wiki-text').innerHTML = this.wiki;
   }
-
 
 
 

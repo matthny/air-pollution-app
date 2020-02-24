@@ -1,4 +1,11 @@
-<button mat-button (click)="onNoClick()">X</button>
-<title mat-dialog-title>{{data.title}}</title>
+<div class="popup-container">
+  <mat-dialog-actions class="popup-header">
+    <button mat-button mat-dialog-close>X</button>
+  </mat-dialog-actions>
 
-<p id="created-wiki-text"></p>
+  <title mat-dialog-title>{{data.title}}</title>
+
+  
+  <p id="created-wiki-text" class="wiki-paragraph"></p>
+
+</div>
