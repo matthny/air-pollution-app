@@ -1,8 +1,10 @@
 .popup-container {
   .popup-header {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    justify-content: flex-end;
   }
 
+  title {
+    padding-top: 1.5rem;
+  }
 }
