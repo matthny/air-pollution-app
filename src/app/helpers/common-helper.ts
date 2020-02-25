@@ -1,6 +1,7 @@
 import { LatestMeasurement } from '../models/latest-measurement';
 import { LatestPollution } from '../models/latest-pollution';
 import { IMeasurementObject } from '../models/utils/interfaces';
+import { Wiki } from '../models/wiki';
 
 
 export class CommonHelper {
@@ -42,6 +43,10 @@ export class CommonHelper {
 export interface OpenAQResponse {
     meta: any;
     results: any[];
+}
+
+export interface WikiResponse {
+  wiki: Wiki;
 }
 
 export enum Parameter {
