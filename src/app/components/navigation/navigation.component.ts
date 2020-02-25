@@ -60,8 +60,7 @@ export class NavigationComponent {
           data: data
         });
 
-        popupRef.componentInstance.CreateWikiParagraph();
+        popupRef.componentInstance.createWikiParagraph();
       });
-
     }
 }

@@ -19,9 +19,6 @@ export class PopupComponent {
   constructor(
     public popupRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PopupData) {}
-
-  private wiki: string = this.data.wiki.extractHTML;
-
   public static getTitle(parameter): string {
     if (parameter === Parameter.pm10) {
       return 'Particulates';
@@ -40,8 +37,6 @@ export class PopupComponent {
     }
   }
 
-
-
   public static getWidth(isHandset: boolean): string {
     return isHandset ? '90vw' : '60vw';
   }
@@ -50,10 +45,7 @@ export class PopupComponent {
     return isHandset ? '95vh' : '60vh';
   }
 
-  public CreateWikiParagraph() {
-    document.getElementById('created-wiki-text').innerHTML = this.wiki;
+  public createWikiParagraph() {
+    document.getElementById('created-wiki-text').innerHTML = this.data.wiki.getFormattedExtract();
   }
-
-
-
 }
