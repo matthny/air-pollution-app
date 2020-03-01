@@ -5,7 +5,7 @@ import { Subscription, Observable } from 'rxjs';
 
 
 import { OpenAQService } from '../../api/open-aq.service';
-import { OpenAQResponse } from '../../helpers/common-helper';
+import { OpenAQResponse, SortEvent } from '../../helpers/common-helper';
 
 import { PollutionGridElement } from '../../models/pollution-grid-element';
 
@@ -22,6 +22,7 @@ import { GridService } from '../../services/grid.service';
 import { Column } from '../../models/column';
 import { PollutionWarningService } from '../../services/pollution-warning.service';
 import { Warning } from '../../models/warning';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-main',
@@ -77,6 +78,7 @@ export class MainComponent implements OnInit {
   private latestPollutionGridColumns: Column[] = [];
 
   private measurementGridDataSource: PollutionGridElement[] = [];
+  private measurementGridDataSourceAngularMaterial: MatTableDataSource<PollutionGridElement> = new MatTableDataSource([]);
   private measurementGridGridColumns: Column[] = [];
 
   private warnings: Warning[];
@@ -207,6 +209,7 @@ export class MainComponent implements OnInit {
       : null;
 
     this.measurementGridDataSource = this.gridService.getPollutionGridDataSource(measurements);
+    this.measurementGridDataSourceAngularMaterial = new MatTableDataSource(this.measurementGridDataSource);
     this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.COLUMNS, this.measurementGridDataSource);
   }
 
@@ -234,5 +237,10 @@ export class MainComponent implements OnInit {
     } else if (this.pollutionForm.value.dateType === 'dateRange') {
       this.showDatePicker = true;
     }
+  }
+
+  private onMatSortChange(e: SortEvent) {
+    this.gridService.sort(this.measurementGridDataSourceAngularMaterial, e.active, e.direction);
+    this.measurementGridDataSourceAngularMaterial._updateChangeSubscription();
   }
 }
