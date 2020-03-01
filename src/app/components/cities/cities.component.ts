@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OpenAQService } from 'src/app/api/open-aq.service';
-import { OpenAQResponse, CommonHelper, Parameter } from 'src/app/helpers/common-helper';
+import { OpenAQResponse, CommonHelper, Parameter, SortEvent, SortDirection } from 'src/app/helpers/common-helper';
 import { Country } from 'src/app/models/country';
 import { PollutionGridElement } from 'src/app/models/pollution-grid-element';
 import { Column } from 'src/app/models/column';
 import { GridService } from 'src/app/services/grid.service';
 import { Measurement } from 'src/app/models/measurement';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-cities',
@@ -60,6 +62,7 @@ export class CitiesComponent implements OnInit {
   private citiesPollutionForm: FormGroup;
 
   private measurementGridDataSource: PollutionGridElement[] = [];
+  private measurementGridDataSourceAngularMaterial: MatTableDataSource<PollutionGridElement> = new MatTableDataSource([]);
   private measurementGridGridColumns: Column[] = [];
 
 
@@ -144,6 +147,7 @@ export class CitiesComponent implements OnInit {
       measurements
     );
 
+    this.measurementGridDataSourceAngularMaterial = new MatTableDataSource(this.measurementGridDataSource);
 
     this.measurementGridGridColumns = this.gridService.getPollutionGridColumns(this.COLUMNS, this.measurementGridDataSource);
   }
@@ -153,4 +157,8 @@ export class CitiesComponent implements OnInit {
     this.measurementGridGridColumns = [];
   }
 
+  private onMatSortChange(e: SortEvent) {
+    this.gridService.sort(this.measurementGridDataSourceAngularMaterial, e.active, e.direction);
+    this.measurementGridDataSourceAngularMaterial._updateChangeSubscription();
+  }
 }

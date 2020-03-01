@@ -2,6 +2,7 @@ import { LatestMeasurement } from '../models/latest-measurement';
 import { LatestPollution } from '../models/latest-pollution';
 import { IMeasurementObject } from '../models/utils/interfaces';
 import { Wiki } from '../models/wiki';
+import { Column } from '../models/column';
 
 
 export class CommonHelper {
@@ -57,5 +58,15 @@ export enum Parameter {
   pm25 = 'pm25',
   so2 = 'so2',
   bc = 'bc'
+}
+
+export enum SortDirection {
+  asc = 'asc',
+  desc = 'desc'
+}
+
+export interface SortEvent {
+  active: Column;
+  direction: SortDirection;
 }
 

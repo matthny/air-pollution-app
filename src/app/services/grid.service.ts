@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { IMeasurementObject } from '../models/utils/interfaces';
 import { PollutionGridElement } from '../models/pollution-grid-element';
-import { CommonHelper, Parameter } from '../helpers/common-helper';
+import { CommonHelper, Parameter, SortDirection } from '../helpers/common-helper';
 import { Column } from '../models/column';
 import { Measurement } from '../models/measurement';
+import { MatTableDataSource } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -151,6 +152,87 @@ export class GridService {
     return availableColumns.filter((column: Column) => moduleColumns.includes(column));
   }
 
+  public sort(dataSource: MatTableDataSource<PollutionGridElement>, column: Column, direction: SortDirection) {
+    if (direction === SortDirection.desc) {
+      if (column === Column.pm10) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.pm10.getValue() - second.pm10.getValue();
+        });
+      } else if (column === Column.pm25) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.pm25.getValue() - second.pm25.getValue();
+        });
+      } else if (column === Column.bc) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.bc.getValue() - second.bc.getValue();
+        });
+      } else if (column === Column.co) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.co.getValue() - second.co.getValue();
+        });
+      } else if (column === Column.no2) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.no2.getValue() - second.no2.getValue();
+        });
+      } else if (column === Column.o3) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.o3.getValue() - second.o3.getValue();
+        });
+      } else if (column === Column.so2) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.so2.getValue() - second.so2.getValue();
+        });
+      } else if (column === Column.date) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.date.getTime() - second.date.getTime();
+        });
+      } else if (column === Column.city) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return first.city.localeCompare(second.city);
+        });
+      }
+    }
+
+    if (direction === SortDirection.asc) {
+      if (column === Column.pm10) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.pm10.getValue() - first.pm10.getValue();
+        });
+      } else if (column === Column.pm25) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.pm25.getValue() - first.pm25.getValue();
+        });
+      } else if (column === Column.bc) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.bc.getValue() - first.bc.getValue();
+        });
+      } else if (column === Column.co) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.co.getValue() - first.co.getValue();
+        });
+      } else if (column === Column.no2) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.no2.getValue() - first.no2.getValue();
+        });
+      } else if (column === Column.o3) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.o3.getValue() - first.o3.getValue();
+        });
+      } else if (column === Column.so2) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.so2.getValue() - first.so2.getValue();
+        });
+      } else if (column === Column.date) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.date.getTime() - first.date.getTime();
+        });
+      } else if (column === Column.city) {
+        dataSource.data.sort((first: PollutionGridElement , second: PollutionGridElement) => {
+          return second.city.localeCompare(first.city);
+        });
+      }
+    }
+  }
 
 
 }

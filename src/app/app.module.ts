@@ -9,7 +9,7 @@ import { CitiesComponent } from './components/cities/cities.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonToggleModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatIconModule, MatNativeDateModule, MatSelectModule, MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatButtonToggleModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatIconModule, MatNativeDateModule, MatSelectModule, MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatListModule, MatSortModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -45,7 +45,8 @@ import { PopupComponent } from './components/popup/popup.component';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
