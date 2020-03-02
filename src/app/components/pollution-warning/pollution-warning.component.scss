@@ -1,0 +1,36 @@
+.warning-container {
+  display: flex;
+  justify-content: center;
+}
+
+.good {
+  color: green;
+}
+
+.moderate {
+  color: rgb(255, 217, 0);
+}
+
+.unhealthy-sensitive {
+  color: orange;
+}
+
+.unhealthy {
+  color: red;
+}
+
+.very-unhealthy {
+  color: rgb(119, 0, 255);
+}
+
+.hazardous {
+  color: brown;
+}
+
+.very-hazardous {
+  color: rgba(0, 0, 0, 0.753);
+}
+
+.out-of-range {
+  color: lightgrey;
+}

@@ -1,6 +1,6 @@
 import { Injectable, APP_INITIALIZER } from '@angular/core';
 import { PollutionGridElement } from '../models/pollution-grid-element';
-import { CommonHelper, Parameter } from '../helpers/common-helper';
+import { CommonHelper, Parameter, PollutionCategory } from '../helpers/common-helper';
 import { Column } from '../models/column';
 import { Warning } from '../models/warning';
 
@@ -141,120 +141,122 @@ export class PollutionWarningService {
     return sum / hours;
   }
 
-  private checkAirPollutionCategory(parameter: Parameter, pollution: number) {
+
+
+  private checkAirPollutionCategory(parameter: Parameter, pollution: number): PollutionCategory {
     if (parameter === Parameter.pm10) {
       if (pollution > 0 && pollution <= 55) {
-        return 'Good';
+        return PollutionCategory.Good;
       } else if (pollution > 55 && pollution <= 155) {
-        return 'Moderate';
+        return PollutionCategory.Moderate;
       } else if (pollution > 155 && pollution <= 255) {
-        return 'Unhealthy for Sensitive Groups';
+        return PollutionCategory.UnhealthySensitive;
       } else if (pollution > 255 && pollution <= 355) {
-        return 'Unhealthy';
+        return PollutionCategory.Unhealthy;
       } else if (pollution > 355 && pollution <= 425) {
-        return 'Very unhealthy';
+        return PollutionCategory.VeryUnhealthy;
       } else if (pollution > 425 && pollution <= 505) {
-        return 'Hazardous';
+        return PollutionCategory.Hazardous;
       } else if (pollution > 505 && pollution < 604) {
-        return 'Very hazardous';
+        return PollutionCategory.VeryHazardous;
       } else {
-        return 'Out of range';
+        return PollutionCategory.OutOfRange;
       }
     }
 
     if (parameter === Parameter.pm25) {
       if (pollution > 0 && pollution <= 12.1) {
-        return 'Good';
+        return PollutionCategory.Good;
       } else if (pollution > 12.1 && pollution <= 35.5) {
-        return 'Moderate';
+        return PollutionCategory.Moderate;
       } else if (pollution > 35.5 && pollution <= 55.5) {
-        return 'Unhealthy for Sensitive Groups';
+        return PollutionCategory.UnhealthySensitive;
       } else if (pollution > 55.5 && pollution <= 150.5) {
-        return 'Unhealthy';
+        return PollutionCategory.Unhealthy;
       } else if (pollution > 150.5 && pollution <= 250.5) {
-        return 'Very unhealthy';
+        return PollutionCategory.VeryUnhealthy;
       } else if (pollution > 250.5 && pollution <= 350.5) {
-        return 'Hazardous';
+        return PollutionCategory.Hazardous;
       } else if (pollution > 350.5 && pollution < 500.4) {
-        return 'Very hazardous';
+        return PollutionCategory.VeryHazardous;
       } else {
-        return 'Out of range';
+        return PollutionCategory.OutOfRange;
       }
     }
 
     if (parameter === Parameter.o3) {
       if (pollution > 0 && pollution <= 108.53) {
-        return 'Good';
+        return PollutionCategory.Good;
       } else if (pollution > 108.35 && pollution <= 139.87) {
-        return 'Moderate';
+        return PollutionCategory.Moderate;
       } else if (pollution > 139.87 && pollution <= 169.42) {
-        return 'Unhealthy for Sensitive Groups';
+        return PollutionCategory.UnhealthySensitive;
       } else if (pollution > 169.42 && pollution < 208.82) {
-        return 'Unhealthy';
+        return PollutionCategory.Unhealthy;
       } else if (pollution > 208.82) {
-        return 'Very unhealthy';
+        return PollutionCategory.VeryUnhealthy;
       } else {
-        return 'Out of range';
+        return PollutionCategory.OutOfRange;
       }
     }
 
     if (parameter === Parameter.no2) {
       if (pollution > 0 && pollution <= 101.52) {
-        return 'Good';
+        return PollutionCategory.Good;
       } else if (pollution > 101.52 && pollution <= 189.88) {
-        return 'Moderate';
+        return PollutionCategory.Moderate;
       } else if (pollution > 189.88 && pollution <= 678.68) {
-        return 'Unhealthy for Sensitive Groups';
+        return PollutionCategory.UnhealthySensitive;
       } else if (pollution > 678.68 && pollution <= 1222) {
-        return 'Unhealthy';
+        return PollutionCategory.Unhealthy;
       } else if (pollution > 1222 && pollution <= 2350) {
-        return 'Very unhealthy';
+        return PollutionCategory.VeryUnhealthy;
       } else if (pollution > 2350 && pollution <= 3102) {
-        return 'Hazardous';
+        return PollutionCategory.Hazardous;
       } else if (pollution > 3102 && pollution < 3852.12) {
-        return 'Very hazardous';
+        return PollutionCategory.VeryHazardous;
       } else {
-        return 'Out of range';
+        return PollutionCategory.OutOfRange;
       }
     }
 
     if (parameter === Parameter.so2) {
       if (pollution > 0 && pollution <= 94.32) {
-        return 'Good';
+        return PollutionCategory.Good;
       } else if (pollution > 94.32 && pollution <= 199.12) {
-        return 'Moderate';
+        return PollutionCategory.Moderate;
       } else if (pollution > 199.12 && pollution <= 487.32) {
-        return 'Unhealthy for Sensitive Groups';
+        return PollutionCategory.UnhealthySensitive;
       } else if (pollution >  487.32 && pollution <= 799.1) {
-        return 'Unhealthy';
+        return PollutionCategory.Unhealthy;
       } else if (pollution > 799.1 && pollution <= 1585.1) {
-        return 'Very unhealthy';
+        return PollutionCategory.VeryUnhealthy;
       } else if (pollution > 1585.1 && pollution <= 2109.1) {
-        return 'Hazardous';
+        return PollutionCategory.Hazardous;
       } else if (pollution > 2109.1 && pollution < 2630.48) {
-        return 'Very hazardous';
+        return PollutionCategory.VeryHazardous;
       } else {
-        return 'Out of range';
+        return PollutionCategory.OutOfRange;
       }
     }
 
     if (parameter === Parameter.co) {
       if (pollution > 0 && pollution <= 5152.5) {
-        return 'Good';
+        return PollutionCategory.Good;
       } else if (pollution > 5152.5 && pollution <= 10877.5) {
-        return 'Moderate';
+        return PollutionCategory.Moderate;
       } else if (pollution > 10877.5 && pollution <= 14312.5) {
-        return 'Unhealthy for Sensitive Groups';
+        return PollutionCategory.UnhealthySensitive;
       } else if (pollution > 14312.5 && pollution <= 17747.5) {
-        return 'Unhealthy';
+        return PollutionCategory.Unhealthy;
       } else if (pollution > 17747.5 && pollution <= 34922.5) {
-        return 'Very unhealthy';
+        return PollutionCategory.VeryUnhealthy;
       } else if (pollution > 34922.5 && pollution <= 46372.5) {
-        return 'Hazardous';
+        return PollutionCategory.Hazardous;
       } else if (pollution > 46372.5 && pollution < 57708) {
-        return 'Very hazardous';
+        return PollutionCategory.VeryHazardous;
       } else {
-        return 'Out of range';
+        return PollutionCategory.OutOfRange;
       }
     }
 }

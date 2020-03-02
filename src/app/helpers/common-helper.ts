@@ -70,3 +70,14 @@ export interface SortEvent {
   direction: SortDirection;
 }
 
+export enum PollutionCategory {
+  'Good' = 1,
+  'Moderate' = 2,
+  'UnhealthySensitive' = 3,
+  'Unhealthy' = 4,
+  'VeryUnhealthy' = 5,
+  'Hazardous' = 6,
+  'VeryHazardous' = 7,
+  'OutOfRange' = 8
+}
+

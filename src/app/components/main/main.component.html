@@ -102,9 +102,7 @@
     </table>
 
     <div *ngIf="archiveView === false && measurementGridDataSource.length > 0">  
-
-      <p *ngFor="let item of warnings"> {{item.parameter}}: {{item.warning}} </p>
-
+      <app-pollution-warning [warnings]="warnings"></app-pollution-warning>
     </div>
 
     <table *ngIf="measurementGridDataSourceAngularMaterial.data.length > 0" mat-table [dataSource]="measurementGridDataSourceAngularMaterial" matSort (matSortChange)="onMatSortChange($event)" matSortDisableClear matSortStart="desc" class="mat-elevation-z8">

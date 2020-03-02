@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { PopupComponent } from './components/popup/popup.component';
+import { PollutionWarningComponent } from './components/pollution-warning/pollution-warning.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { PopupComponent } from './components/popup/popup.component';
     MainComponent,
     CitiesComponent,
     NavigationComponent,
-    PopupComponent
+    PopupComponent,
+    PollutionWarningComponent
   ],
   entryComponents: [PopupComponent],
   imports: [
