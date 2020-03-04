@@ -3,8 +3,8 @@
     <button mat-button mat-dialog-close>X</button>
   </mat-dialog-actions>
 
-  <title mat-dialog-title>{{data.title}}</title>
+  <title mat-dialog-title id="created-title"></title>
   <p id="created-wiki-text"></p>
-  <a href={{data.wiki.desktopUrl}} target="_blank">Source: Wikipedia. Learn more!</a>
+  <a href={{data.wiki.desktopUrl}} target="_blank">{{'wikiLink' | translate}}</a>
 
 </div>

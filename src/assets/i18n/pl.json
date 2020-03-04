@@ -19,6 +19,7 @@
 
   "date": "Data",
 
+  "airMessage": "Stan powietrza:",
   "messageGood": "Dobry",
   "messageModerate": "Umiarkowany",
   "messageUnhealthySensitive": "Szkodliwy dla wrażliwych grup",
@@ -26,6 +27,16 @@
   "messageVeryUnhealthy": "Bardzo niezdrowy",
   "messageHazardous": "Niebezpieczny",
   "messageVeryHazardous": "Bardzo niebezpieczny",
-  "messageOutOfRange": "Poza skalą"
+  "messageOutOfRange": "Poza skalą",
+
+  "wikiLink": "Źródło: Wikipedia. Dowiedz się więcej!",
+
+  "pm25": "Pył",
+  "pm10": "Pył ",
+  "o3": "Ozon",
+  "bc": "Czarny węgiel",
+  "co": "Tlenek węgla",
+  "no2": "Dwutlenek azotu",
+  "so2": "Dwutlenek siarki"
   
 }

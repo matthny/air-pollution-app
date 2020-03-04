@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+
 }
 
 .sidenav {
@@ -7,6 +8,21 @@
 
   .mat-toolbar {
     background: inherit;
+  }
+
+  .lang-buttons-div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    .lang-buttons {
+      display: flex;
+    
+      > * {
+        flex: 1;
+      }
+    }
   }
 }
 

@@ -18,10 +18,19 @@
         <button mat-list-item (click)="openPopup('co')">co</button>
         <button mat-list-item (click)="openPopup('o3')">o3</button>
       </mat-action-list> 
-      <mat-divider></mat-divider>
-      <button (click)="setPL()">PL</button>
-      <button (click)="setEN()">EN</button>
     </mat-nav-list>
+    <mat-divider></mat-divider>
+
+    <div class="lang-buttons-div">
+      <mat-button-toggle-group class="lang-buttons" #group="matButtonToggleGroup">
+        <mat-button-toggle (click)="setPL()">
+          PL
+        </mat-button-toggle>
+        <mat-button-toggle (click)="setEN()">
+          EN
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">

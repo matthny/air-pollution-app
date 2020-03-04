@@ -54,7 +54,7 @@ export class NavigationComponent {
       this.wikiService.getWiki(parameter).toPromise().then((result: WikiResponse) => {
         const data: PopupData = {
           wiki: new Wiki(result),
-          title: PopupComponent.getTitle(parameter)
+          parameter: parameter
         };
 
         popupRef = this.popup.open(PopupComponent, {
@@ -64,6 +64,7 @@ export class NavigationComponent {
         });
 
         popupRef.componentInstance.createWikiParagraph();
+        popupRef.componentInstance.createTitle();
       });
     }
 

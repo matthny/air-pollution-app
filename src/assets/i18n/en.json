@@ -20,6 +20,7 @@
 
   "date": "Date",
 
+  "airMessage": "Air quality:",
   "messageGood": "Good",
   "messageModerate": "Moderate",
   "messageUnhealthySensitive": "Unhealthy for Sensitive Groups",
@@ -27,6 +28,15 @@
   "messageVeryUnhealthy": "Very unhealthy",
   "messageHazardous": "Hazardous",
   "messageVeryHazardous": "Very hazardous",
-  "messageOutOfRange": "Out of range"
+  "messageOutOfRange": "Out of range",
 
+  "wikiLink": "Source: Wikipedia. Learn more!",
+
+  "pm25": "Particulates",
+  "pm10": "Particulates ",
+  "o3": "Ozone",
+  "bc": "Black carbon",
+  "co": "Carbon monoxide",
+  "no2": "Nitrogen dioxide",
+  "so2": "Sulfur dioxide"
 }
