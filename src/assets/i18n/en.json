@@ -1,3 +1,28 @@
 {
-  "appName": "pollution app"
+  "appName": "air pollution app",
+  "country": "Country",
+  "city": "City",
+  "location": "Location",
+  "parameter": "Pollutant",
+
+
+  "dateRangeNow": "Now",
+  "dateRangeCalendar": "Calendar",
+  "chooseDateFrom": "From",
+  "chooseDateTo": "To",
+
+
+  "goButton": "Go!",
+
+  "date": "Date",
+
+  "messageGood": "Good",
+  "messageModerate": "Moderate",
+  "messageUnhealthySensitive": "Unhealthy for Sensitive Groups",
+  "messageUnhealthy": "Unhealthy",
+  "messageVeryUnhealthy": "Very unhealthy",
+  "messageHazardous": "Hazardous",
+  "messageVeryHazardous": "Very hazardous",
+  "messageOutOfRange": "Out of range"
+
 }

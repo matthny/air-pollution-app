@@ -1,3 +1,27 @@
 {
-  "appName": "apka"
+  "appName": "air pollution app",
+  "country": "Kraj",
+  "city": "Miasto",
+  "location": "Lokalizacja",
+  "parameter": "Zanieczyszczenie",
+
+  "dateRangeNow": "Teraz",
+  "dateRangeCalendar": "Kalendarz",
+  "chooseDateFrom": "Od",
+  "chooseDateTo": "Do",
+
+
+  "goButton": "Wyświetl!",
+
+  "date": "Data",
+
+  "messageGood": "Dobry",
+  "messageModerate": "Umiarkowany",
+  "messageUnhealthySensitive": "Szkodliwy dla wrażliwych grup",
+  "messageUnhealthy": "Niezdrowy",
+  "messageVeryUnhealthy": "Bardzo niezdrowy",
+  "messageHazardous": "Niebezpieczny",
+  "messageVeryHazardous": "Bardzo niebezpieczny",
+  "messageOutOfRange": "Poza skalą"
+  
 }

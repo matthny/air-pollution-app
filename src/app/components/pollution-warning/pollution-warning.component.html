@@ -2,35 +2,35 @@
   <div>
     <div *ngFor="let item of warnings">
       <p *ngIf="item.warning == 1" class="good mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageGood" | translate}}
       </p>
 
       <p *ngIf="item.warning == 2" class="moderate mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageModerate" | translate}}
       </p>
 
       <p *ngIf="item.warning == 3" class="unhealthy-sensitive mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageUnhealthySensitive" | translate}}
       </p>
 
       <p *ngIf="item.warning == 4" class="unhealthy mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageUnhealthy" | translate}}
       </p>
 
       <p *ngIf="item.warning == 5" class="very-unhealthy mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageVeryUnhealthy" | translate}}
       </p>
 
       <p *ngIf="item.warning == 6" class="hazardous mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageHazardous" | translate}}
       </p>
 
       <p *ngIf="item.warning == 7" class="very-hazardous mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageVeryHazardous" | translate}}
       </p>
 
       <p *ngIf="item.warning == 8" class="out-of-range mat-body-strong">
-        ▶ {{item.parameter}}: {{item.getWarningMessage()}}
+        ▶ {{item.parameter}}: {{"messageOutOfRange" | translate}}
       </p>
     </div>
   </div>

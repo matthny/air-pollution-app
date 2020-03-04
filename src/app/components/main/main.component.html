@@ -2,7 +2,7 @@
   <div class="menu-container">  
     <form [formGroup]="pollutionForm" novalidate (ngSubmit)="onGoClick()">
       <mat-form-field class="country-item" >
-        <mat-label>Country</mat-label>
+        <mat-label>{{'country' | translate}}</mat-label>
         <mat-select (selectionChange)="onCountrySelected($event)" formControlName="country">
           <mat-option *ngFor="let country of countries" [value]="country.code">
             {{country.name}}
@@ -11,7 +11,7 @@
       </mat-form-field>
 
       <mat-form-field class="city-item" >
-        <mat-label>City</mat-label>
+        <mat-label>{{'city' | translate}}</mat-label>
         <mat-select (selectionChange)="onCitySelected($event)" formControlName="city">
           <mat-option *ngFor="let city of cities" [value]="city.city">
             {{city.city}}
@@ -20,7 +20,7 @@
       </mat-form-field>
 
       <mat-form-field class="location-item" >
-        <mat-label>Location</mat-label>
+        <mat-label>{{'location' | translate}}</mat-label>
         <mat-select formControlName="location">
           <mat-option *ngFor="let location of locations" [value]="location.location">
             {{location.location}}
@@ -30,35 +30,35 @@
 
       <mat-button-toggle-group (change)="onDateToggleChange()" class="time-item" #dateGroup="matButtonToggleGroup" formControlName="dateType">
         <mat-button-toggle value="now" aria-label="Now">
-          Now
+          {{'dateRangeNow' | translate}}
         </mat-button-toggle>
         <mat-button-toggle value="dateRange" aria-label="Date picker">
-          <mat-icon>date_range</mat-icon>
+          {{'dateRangeCalendar' | translate}}
         </mat-button-toggle>
       </mat-button-toggle-group>
 
       <div class="date-pickers" *ngIf="showDatePicker == true">
         <mat-form-field class="picker-from">
-          <input matInput [matDatepicker]="fromDatePicker" placeholder="Choose a date" formControlName="fromDate">
+          <input matInput [matDatepicker]="fromDatePicker" placeholder="{{'chooseDateFrom' | translate}}" formControlName="fromDate">
           <mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #fromDatePicker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field class="picker-to">
-          <input matInput [matDatepicker]="toDatePicker" placeholder="Choose a date"  formControlName="toDate">
+          <input matInput [matDatepicker]="toDatePicker" placeholder="{{'chooseDateTo' | translate}}"  formControlName="toDate">
           <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
           <mat-datepicker #toDatePicker></mat-datepicker>
         </mat-form-field>
       </div>
 
-      <button mat-stroked-button type="submit" class="go-button-item">Go!</button>
+      <button mat-stroked-button type="submit" class="go-button-item">{{'goButton' | translate}}</button>
     </form>
   </div>
 
   <div class="grid-container">
     <table  *ngIf="archiveView === false && latestPollutionGridDataSource.length > 0" mat-table [dataSource]="latestPollutionGridDataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="{{dateColumn}}">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <th mat-header-cell *matHeaderCellDef> {{'date' | translate}} </th>
         <td mat-cell *matCellDef="let element"> {{element.getLocaleDateTime()}} </td>
       </ng-container>
     

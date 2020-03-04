@@ -23,6 +23,8 @@ import { Column } from '../../models/column';
 import { PollutionWarningService } from '../../services/pollution-warning.service';
 import { Warning } from '../../models/warning';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-main',
@@ -37,7 +39,8 @@ export class MainComponent implements OnInit {
   constructor(
     private openAQService: OpenAQService,
     private gridService: GridService,
-    private pollutionWarningService: PollutionWarningService
+    private pollutionWarningService: PollutionWarningService,
+    private translate: TranslateService
   ) {
   }
 
