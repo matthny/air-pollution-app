@@ -1,5 +1,9 @@
 {
   "appName": "air pollution app",
+
+  "mainModuleName": "Stan powietrza",
+  "citiesModuleName": "Ranking miast",
+  
   "country": "Kraj",
   "city": "Miasto",
   "location": "Lokalizacja",

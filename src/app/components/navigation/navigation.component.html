@@ -6,8 +6,8 @@
       (click)="handleClick()">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="main" routerLinkActive="active">Locations</a>
-      <a mat-list-item routerLink="cities" routerLinkActive="active">Cities</a>
+      <a mat-list-item routerLink="main" routerLinkActive="active">{{'mainModuleName' | translate}}</a>
+      <a mat-list-item routerLink="cities" routerLinkActive="active">{{'citiesModuleName' | translate}}</a>
       <mat-divider></mat-divider>
       <mat-action-list>
         <button mat-list-item (click)="openPopup('pm10')">pm10</button>
