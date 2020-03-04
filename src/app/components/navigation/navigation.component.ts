@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
-import { MatSidenav, MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSidenav } from '@angular/material/sidenav';
 
 import { PopupComponent, PopupData } from '../popup/popup.component';
 import { Parameter, WikiResponse } from 'src/app/helpers/common-helper';
@@ -17,7 +18,7 @@ import { Wiki } from 'src/app/models/wiki';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
-  @ViewChild('drawer')
+  @ViewChild('drawer', { static: true })
   private drawer: MatSidenav;
   private isHandset: boolean;
 

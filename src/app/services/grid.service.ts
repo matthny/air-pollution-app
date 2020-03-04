@@ -4,7 +4,7 @@ import { PollutionGridElement } from '../models/pollution-grid-element';
 import { CommonHelper, Parameter, SortDirection } from '../helpers/common-helper';
 import { Column } from '../models/column';
 import { Measurement } from '../models/measurement';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable({
   providedIn: 'root'

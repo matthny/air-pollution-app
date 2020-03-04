@@ -22,7 +22,7 @@ import { GridService } from '../../services/grid.service';
 import { Column } from '../../models/column';
 import { PollutionWarningService } from '../../services/pollution-warning.service';
 import { Warning } from '../../models/warning';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-main',

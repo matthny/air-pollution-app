@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { OpenAQService } from 'src/app/api/open-aq.service';
 import { OpenAQResponse, CommonHelper, Parameter, SortEvent, SortDirection } from 'src/app/helpers/common-helper';
 import { Country } from 'src/app/models/country';
@@ -8,7 +8,7 @@ import { PollutionGridElement } from 'src/app/models/pollution-grid-element';
 import { Column } from 'src/app/models/column';
 import { GridService } from 'src/app/services/grid.service';
 import { Measurement } from 'src/app/models/measurement';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-cities',
