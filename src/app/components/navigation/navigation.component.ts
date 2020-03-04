@@ -10,6 +10,7 @@ import { Parameter, WikiResponse } from 'src/app/helpers/common-helper';
 import { WikiService } from 'src/app/api/wiki.service';
 import { Wiki } from 'src/app/models/wiki';
 
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class NavigationComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     public popup: MatDialog,
-    private wikiService: WikiService
+    private wikiService: WikiService,
+    private translate: TranslateService
   ) {}
 
     private handleClick(): void {
@@ -63,5 +65,13 @@ export class NavigationComponent {
 
         popupRef.componentInstance.createWikiParagraph();
       });
+    }
+
+    private setPL() {
+      this.translate.use('pl');
+    }
+
+    private setEN() {
+      this.translate.use('en');
     }
 }

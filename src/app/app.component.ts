@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
-import localePl from '@angular/common/locales/pl';
-import localePlExtra from '@angular/common/locales/extra/pl';
+
+
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,11 @@ import localePlExtra from '@angular/common/locales/extra/pl';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'air-app';
 
-
-  constructor() {
-    registerLocaleData(localePl, 'pl', localePlExtra);
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['en', 'pl']);
+    translate.setDefaultLang('en');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match('en') || browserLang.match('pl') ? browserLang : 'en');
   }
-
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +31,10 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { LayoutModule } from '@angular/cdk/layout';
 import { PopupComponent } from './components/popup/popup.component';
 import { PollutionWarningComponent } from './components/pollution-warning/pollution-warning.component';
+
+import { LOCALE_ID } from '@angular/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 @NgModule({
@@ -64,9 +68,28 @@ import { PollutionWarningComponent } from './components/pollution-warning/pollut
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
-    MatSortModule
+    MatSortModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'pl' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export class DynamicLocaleId extends String {
+  locale: string;
+
+  toString() {
+    return this.locale;
+  }
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

@@ -17,7 +17,10 @@
         <button mat-list-item (click)="openPopup('so2')">so2</button>
         <button mat-list-item (click)="openPopup('co')">co</button>
         <button mat-list-item (click)="openPopup('o3')">o3</button>
-      </mat-action-list>      
+      </mat-action-list> 
+      <mat-divider></mat-divider>
+      <button (click)="setPL()">PL</button>
+      <button (click)="setEN()">EN</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -30,7 +33,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>air pollution app</span>
+      <span>{{'appName' | translate}}</span>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
