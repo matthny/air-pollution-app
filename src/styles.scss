@@ -6,3 +6,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 * {
     box-sizing: border-box;
 }
+
+.app-sub {
+    position: relative;
+    bottom: -0.25rem;
+    font-size: 75%;
+}

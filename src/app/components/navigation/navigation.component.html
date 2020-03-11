@@ -10,13 +10,13 @@
       <a mat-list-item routerLink="cities" routerLinkActive="active">{{'citiesModuleName' | translate}}</a>
       <mat-divider></mat-divider>
       <mat-action-list>
-        <button mat-list-item (click)="openPopup('pm10')">pm10</button>
-        <button mat-list-item (click)="openPopup('pm25')">pm25</button>
-        <button mat-list-item (click)="openPopup('bc')">bc</button>
-        <button mat-list-item (click)="openPopup('no2')">no2</button>
-        <button mat-list-item (click)="openPopup('so2')">so2</button>
-        <button mat-list-item (click)="openPopup('co')">co</button>
-        <button mat-list-item (click)="openPopup('o3')">o3</button>
+        <button mat-list-item (click)="openPopup('pm10')">PM<div class="app-sub">10</div></button>
+        <button mat-list-item (click)="openPopup('pm25')">PM<div class="app-sub">25</div></button>
+        <button mat-list-item (click)="openPopup('bc')">BC</button>
+        <button mat-list-item (click)="openPopup('no2')">NO<div class="app-sub">2</div></button>
+        <button mat-list-item (click)="openPopup('so2')">SO<div class="app-sub">2</div></button>
+        <button mat-list-item (click)="openPopup('co')">CO</button>
+        <button mat-list-item (click)="openPopup('o3')">O<div class="app-sub">3</div></button>
       </mat-action-list> 
     </mat-nav-list>
     <mat-divider></mat-divider>
