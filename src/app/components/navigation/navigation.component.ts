@@ -70,9 +70,11 @@ export class NavigationComponent {
 
     private setPL() {
       this.translate.use('pl');
+      localStorage.setItem('airAppLang', 'pl');
     }
 
     private setEN() {
       this.translate.use('en');
+      localStorage.setItem('airAppLang', 'en');
     }
 }

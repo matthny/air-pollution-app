@@ -12,8 +12,14 @@ export class AppComponent {
 
   constructor(public translate: TranslateService) {
     translate.addLangs(['en', 'pl']);
-    translate.setDefaultLang('en');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match('en') || browserLang.match('pl') ? browserLang : 'en');
+
+    const savedLang: string = localStorage.getItem('airAppLang');
+    const browserLang: string = translate.getBrowserLang();
+
+    if (savedLang != null) {
+      translate.use(savedLang.match('en') || savedLang.match('pl') ? savedLang : 'en');
+    } else {
+      translate.use(browserLang.match('en') || browserLang.match('pl') ? browserLang : 'en');
+    }
   }
 }
