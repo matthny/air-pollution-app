@@ -3,35 +3,35 @@
     <h3>{{'airMessage' | translate}}</h3>
     <div *ngFor="let item of warnings">
       <p *ngIf="item.warning == 1" class="good mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageGood" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageGood" | translate}}
       </p>
 
       <p *ngIf="item.warning == 2" class="moderate mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageModerate" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageModerate" | translate}}
       </p>
 
       <p *ngIf="item.warning == 3" class="unhealthy-sensitive mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageUnhealthySensitive" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageUnhealthySensitive" | translate}}
       </p>
 
       <p *ngIf="item.warning == 4" class="unhealthy mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageUnhealthy" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageUnhealthy" | translate}}
       </p>
 
       <p *ngIf="item.warning == 5" class="very-unhealthy mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageVeryUnhealthy" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageVeryUnhealthy" | translate}}
       </p>
 
       <p *ngIf="item.warning == 6" class="hazardous mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageHazardous" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageHazardous" | translate}}
       </p>
 
       <p *ngIf="item.warning == 7" class="very-hazardous mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageVeryHazardous" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageVeryHazardous" | translate}}
       </p>
 
       <p *ngIf="item.warning == 8" class="out-of-range mat-body-strong">
-        ▶ {{item.parameter}}: {{"messageOutOfRange" | translate}}
+        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageOutOfRange" | translate}}
       </p>
     </div>
   </div>

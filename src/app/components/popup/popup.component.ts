@@ -1,12 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MatDialogTitle, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Parameter } from 'src/app/helpers/common-helper';
+import { Parameter, CommonHelper } from 'src/app/helpers/common-helper';
 import { Wiki } from 'src/app/models/wiki';
 import { TranslateService } from '@ngx-translate/core';
 
 
 export interface PopupData {
-  wiki: Wiki
+  wiki: Wiki;
   parameter: string;
 }
 
@@ -51,7 +51,7 @@ export class PopupComponent {
   }
 
   public createWikiParagraph() {
-    document.getElementById('created-wiki-text').innerHTML = this.data.wiki.getFormattedExtract();
+    document.getElementById('created-wiki-text').innerHTML = CommonHelper.getFormattedHTMLPopup(this.data.wiki.extract);
   }
 
   public createTitle() {

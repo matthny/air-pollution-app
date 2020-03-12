@@ -1,4 +1,4 @@
-import { Parameter, PollutionCategory } from '../helpers/common-helper';
+import { Parameter, PollutionCategory, CommonHelper } from '../helpers/common-helper';
 
 export class Warning {
   public parameter: Parameter;
@@ -7,5 +7,9 @@ export class Warning {
   constructor(parameter: Parameter, warning: PollutionCategory) {
     this.parameter = parameter;
     this.warning = warning;
+  }
+
+  public getParameterHTML(): string {
+    return CommonHelper.getFormattedHTMLParameter(this.parameter.toString());
   }
 }

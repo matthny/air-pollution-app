@@ -39,6 +39,42 @@ export class CommonHelper {
       )
     );
   }
+
+  public static getFormattedHTMLPopup(text: string): string {
+    while (text.includes('NO2')
+      || text.includes('CO2')
+      || text.includes('O3')
+      || text.includes('O2')
+      || text.includes('SO2')
+      || text.includes('C2v')
+    ) {
+      text = text.replace('NO2', 'NO<sub>2</sub>');
+      text = text.replace('CO2', 'CO<sub>2</sub>');
+      text = text.replace('O3', 'O<sub>3</sub>');
+      text = text.replace('O2', 'O<sub>2</sub>');
+      text = text.replace('SO2', 'SO<sub>2</sub>');
+      text = text.replace('C2v', 'C<sub>2v</sub>');
+    }
+    return text;
+  }
+
+  public static getFormattedHTMLParameter(text: string): string {
+    while (text.includes('o3')
+      || text.includes('so2')
+      || text.includes('pm10')
+      || text.includes('pm25')
+      || text.includes('no2')
+      || text.includes('co')
+    ) {
+      text = text.replace('o3', 'O<sub>3</sub>');
+      text = text.replace('so2', 'SO<sub>2</sub>');
+      text = text.replace('no2', 'NO<sub>2</sub>');
+      text = text.replace('pm10', 'PM<sub>10</sub>');
+      text = text.replace('pm25', 'PM<sub>25</sub>');
+      text = text.replace('co', 'CO');
+    }
+    return text;
+  }
 }
 
 export interface OpenAQResponse {
@@ -80,4 +116,6 @@ export enum PollutionCategory {
   'VeryHazardous' = 7,
   'OutOfRange' = 8
 }
+
+
 
