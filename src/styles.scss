@@ -12,3 +12,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     bottom: -0.25rem;
     font-size: 75%;
 }
+  
+.mat-select-panel {
+    max-height: 80vh !important;
+}

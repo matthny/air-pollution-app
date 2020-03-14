@@ -10,6 +10,10 @@ import { GridService } from 'src/app/services/grid.service';
 import { Measurement } from 'src/app/models/measurement';
 import { MatTableDataSource } from '@angular/material/table';
 
+export interface Parameters {
+  [param: string]: string;
+}
+
 @Component({
   selector: 'app-cities',
   templateUrl: './cities.component.html',
@@ -34,15 +38,15 @@ export class CitiesComponent implements OnInit {
     Column.bc
   ];
 
-  private PARAMETERS: Parameter[] = [
-    Parameter.co,
-    Parameter.no2,
-    Parameter.o3,
-    Parameter.pm10,
-    Parameter.pm25,
-    Parameter.so2,
-    Parameter.bc
-  ];
+  private PARAMETERS: Parameters = {
+    [Parameter.co.toString()]: CommonHelper.getFormattedHTMLParameter(Parameter.co.toString()),
+    [Parameter.no2.toString()]: CommonHelper.getFormattedHTMLParameter(Parameter.no2.toString()),
+    [Parameter.o3.toString()]: CommonHelper.getFormattedHTMLParameter(Parameter.o3.toString()),
+    [Parameter.pm10.toString()]: CommonHelper.getFormattedHTMLParameter(Parameter.pm10.toString()),
+    [Parameter.pm25.toString()]: CommonHelper.getFormattedHTMLParameter(Parameter.pm25.toString()),
+    [Parameter.so2.toString()]: CommonHelper.getFormattedHTMLParameter(Parameter.so2.toString()),
+    [Parameter.bc.toString()]: CommonHelper.getFormattedHTMLParameter(Parameter.bc.toString()),
+  };
 
   private showDatePicker: boolean;
   private fromDate: Date;
@@ -160,5 +164,10 @@ export class CitiesComponent implements OnInit {
   private onMatSortChange(e: SortEvent) {
     this.gridService.sort(this.measurementGridDataSourceAngularMaterial, e.active, e.direction);
     this.measurementGridDataSourceAngularMaterial._updateChangeSubscription();
+  }
+
+  private onParameterSelected(event): void {
+    const elements: NodeListOf<HTMLElement> = document.querySelectorAll('div.mat-select-value');
+    elements[1].innerHTML = CommonHelper.getFormattedHTMLParameter(event.value);
   }
 }

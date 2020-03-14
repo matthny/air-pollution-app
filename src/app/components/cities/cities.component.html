@@ -12,9 +12,9 @@
 
       <mat-form-field class="parameter-item">
         <mat-label>{{"parameter" | translate}}</mat-label>
-        <mat-select formControlName="parameter">
-          <mat-option *ngFor="let parameter of PARAMETERS" [value]="parameter">
-            {{parameter}}
+        <mat-select formControlName="parameter" (selectionChange)="onParameterSelected($event)" >
+          <mat-option *ngFor="let parameter of PARAMETERS | keyvalue" [value]="parameter.key">
+            <div [innerHTML]="parameter.value"></div>
           </mat-option>
         </mat-select>
       </mat-form-field>

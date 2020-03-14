@@ -65,13 +65,15 @@ export class CommonHelper {
       || text.includes('pm25')
       || text.includes('no2')
       || text.includes('co')
+      || text.includes('bc')
     ) {
       text = text.replace('o3', 'O<sub>3</sub>');
       text = text.replace('so2', 'SO<sub>2</sub>');
       text = text.replace('no2', 'NO<sub>2</sub>');
-      text = text.replace('pm10', 'PM<sub>10</sub>');
-      text = text.replace('pm25', 'PM<sub>25</sub>');
+      text = text.replace('pm10', 'PM10');
+      text = text.replace('pm25', 'PM2.5');
       text = text.replace('co', 'CO');
+      text = text.replace('bc', 'BC');
     }
     return text;
   }
