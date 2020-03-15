@@ -99,8 +99,14 @@ export class MainComponent implements OnInit {
   private setPollutionForm(): void {
     this.pollutionForm = new FormGroup({
       country: new FormControl(''),
-      city: new FormControl(''),
-      location: new FormControl(''),
+      city: new FormControl({
+        value: '',
+        disabled: true
+      }),
+      location: new FormControl({
+        value: '',
+        disabled: true
+      }),
       dateType: new FormControl('now'),
       fromDate: new FormControl(''),
       toDate: new FormControl('')
@@ -127,6 +133,8 @@ export class MainComponent implements OnInit {
           .map(result => new City(result))
           .filter(result => result.city != null)
           .sort(City.alphabeticalComparator);
+
+        this.pollutionForm.controls.city.enable();
       } else {
         this.cities = [];
       }
@@ -140,6 +148,8 @@ export class MainComponent implements OnInit {
           .map(result => new Location(result))
           .filter(result => result.sourceName != null)
           .sort(Location.alphabeticalComparator);
+
+        this.pollutionForm.controls.location.enable();
       } else {
         this.locations = [];
       }
@@ -170,27 +180,33 @@ export class MainComponent implements OnInit {
   }
 
   private onGoClick(): void {
-    this.checkViewType();
+    this.setValidators();
 
-    Promise.all([
-      this.openAQService.getLatestPollution(this.pollutionForm.value.location).toPromise(),
-      this.openAQService.getMeasurementsForLocation(
-        this.pollutionForm.value.location,
-        this.fromDate.toISOString() ,
-        this.toDate.toISOString()
-      ).toPromise()
-    ])
-    .then((result: OpenAQResponse[]) => {
-      this.setLatestPollutionGrid(result[0]);
-      this.setMeasurementGrid(result[1]);
+    if (this.pollutionForm.valid) {
+      this.checkViewType();
 
-      this.pollutionWarningService.reset();
-      this.pollutionWarningService.addMeasurements(this.latestPollutionGridDataSource);
-      this.pollutionWarningService.addMeasurements(this.measurementGridDataSource);
-      this.pollutionWarningService.addColumns(this.latestPollutionGridColumns);
-      this.pollutionWarningService.prepareWarnings();
-      this.warnings = this.pollutionWarningService.getWarnings();
-    });
+      Promise.all([
+        this.openAQService.getLatestPollution(this.pollutionForm.value.location).toPromise(),
+        this.openAQService.getMeasurementsForLocation(
+          this.pollutionForm.value.location,
+          this.fromDate.toISOString() ,
+          this.toDate.toISOString()
+        ).toPromise()
+      ])
+      .then((result: OpenAQResponse[]) => {
+        this.setLatestPollutionGrid(result[0]);
+        this.setMeasurementGrid(result[1]);
+
+        this.pollutionWarningService.reset();
+        this.pollutionWarningService.addMeasurements(this.latestPollutionGridDataSource);
+        this.pollutionWarningService.addMeasurements(this.measurementGridDataSource);
+        this.pollutionWarningService.addColumns(this.latestPollutionGridColumns);
+        this.pollutionWarningService.prepareWarnings();
+        this.warnings = this.pollutionWarningService.getWarnings();
+      });
+
+      this.clearValidators();
+    }
   }
 
   private setLatestPollutionGrid(data) {
@@ -217,10 +233,19 @@ export class MainComponent implements OnInit {
   }
 
   private onCountrySelected(e: any): void {
+    this.pollutionForm.controls.city.reset();
+    this.pollutionForm.controls.location.reset();
+    this.cities = [];
+    this.locations = [];
+    this.pollutionForm.controls.location.disable();
+
     this.setCities(e.value);
   }
 
   private onCitySelected(e: any): void {
+    this.pollutionForm.controls.location.reset();
+    this.locations = [];
+
     this.setLocations(e.value);
   }
 
@@ -245,5 +270,33 @@ export class MainComponent implements OnInit {
   private onMatSortChange(e: SortEvent) {
     this.gridService.sort(this.measurementGridDataSourceAngularMaterial, e.active, e.direction);
     this.measurementGridDataSourceAngularMaterial._updateChangeSubscription();
+  }
+
+  private setValidators(): void {
+    this.pollutionForm.controls.country.setValidators(Validators.required);
+    this.pollutionForm.controls.city.setValidators(Validators.required);
+    this.pollutionForm.controls.location.setValidators(Validators.required);
+    this.pollutionForm.controls.fromDate.setValidators(Validators.required);
+    this.pollutionForm.controls.toDate.setValidators(Validators.required);
+
+    this.updateValidators();
+  }
+
+  private clearValidators(): void {
+    this.pollutionForm.controls.country.clearValidators();
+    this.pollutionForm.controls.city.clearValidators();
+    this.pollutionForm.controls.location.clearValidators();
+    this.pollutionForm.controls.fromDate.clearValidators();
+    this.pollutionForm.controls.toDate.clearValidators();
+
+    this.updateValidators();
+  }
+
+  private updateValidators(): void {
+    this.pollutionForm.controls.country.updateValueAndValidity();
+    this.pollutionForm.controls.city.updateValueAndValidity();
+    this.pollutionForm.controls.location.updateValueAndValidity();
+    this.pollutionForm.controls.fromDate.updateValueAndValidity();
+    this.pollutionForm.controls.toDate.updateValueAndValidity();
   }
 }
