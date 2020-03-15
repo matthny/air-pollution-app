@@ -276,8 +276,14 @@ export class MainComponent implements OnInit {
     this.pollutionForm.controls.country.setValidators(Validators.required);
     this.pollutionForm.controls.city.setValidators(Validators.required);
     this.pollutionForm.controls.location.setValidators(Validators.required);
-    this.pollutionForm.controls.fromDate.setValidators(Validators.required);
-    this.pollutionForm.controls.toDate.setValidators(Validators.required);
+
+    if (this.showDatePicker) {
+      this.pollutionForm.controls.fromDate.setValidators(Validators.required);
+      this.pollutionForm.controls.toDate.setValidators(Validators.required);
+    } else if (!this.showDatePicker) {
+      this.pollutionForm.controls.fromDate.clearValidators();
+      this.pollutionForm.controls.toDate.clearValidators();
+    }
 
     this.updateValidators();
   }
