@@ -113,12 +113,10 @@ export class CitiesComponent implements OnInit {
   }
 
   private onGoClick(): void {
-
     this.setValidators();
 
     if (this.citiesPollutionForm.valid) {
       this.setMeasurementsRequestDates();
-
 
       Promise.all([
         this.openAQService.getMeasurementsForCountry(

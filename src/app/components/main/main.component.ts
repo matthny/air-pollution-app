@@ -86,7 +86,6 @@ export class MainComponent implements OnInit {
 
   private warnings: Warning[];
 
-
   ngOnInit() {
     this.initialize();
   }
