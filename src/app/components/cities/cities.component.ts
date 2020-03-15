@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OpenAQService } from 'src/app/api/open-aq.service';
 import { OpenAQResponse, CommonHelper, Parameter, SortEvent, SortDirection } from 'src/app/helpers/common-helper';
 import { Country } from 'src/app/models/country';
@@ -113,20 +113,27 @@ export class CitiesComponent implements OnInit {
   }
 
   private onGoClick(): void {
-    this.setMeasurementsRequestDates();
+
+    this.setValidators();
+
+    if (this.citiesPollutionForm.valid) {
+      this.setMeasurementsRequestDates();
 
 
-    Promise.all([
-      this.openAQService.getMeasurementsForCountry(
-        this.citiesPollutionForm.value.country,
-        this.citiesPollutionForm.value.parameter,
-        this.fromDate.toISOString() ,
-        this.toDate.toISOString()
-      ).toPromise()
-    ])
-    .then((result: OpenAQResponse[]) => {
-      this.setMeasurementGrid(result[0]);
-    });
+      Promise.all([
+        this.openAQService.getMeasurementsForCountry(
+          this.citiesPollutionForm.value.country,
+          this.citiesPollutionForm.value.parameter,
+          this.fromDate.toISOString() ,
+          this.toDate.toISOString()
+        ).toPromise()
+      ])
+      .then((result: OpenAQResponse[]) => {
+        this.setMeasurementGrid(result[0]);
+      });
+
+      this.clearValidators();
+    }
   }
 
   private onDateToggleChange(): void {
@@ -169,5 +176,36 @@ export class CitiesComponent implements OnInit {
   private onParameterSelected(event): void {
     const elements: NodeListOf<HTMLElement> = document.querySelectorAll('div.mat-select-value');
     elements[1].innerHTML = CommonHelper.getFormattedHTMLParameter(event.value);
+  }
+
+  private setValidators(): void {
+    this.citiesPollutionForm.controls.country.setValidators(Validators.required);
+    this.citiesPollutionForm.controls.parameter.setValidators(Validators.required);
+
+    if (this.showDatePicker) {
+      this.citiesPollutionForm.controls.fromDate.setValidators(Validators.required);
+      this.citiesPollutionForm.controls.toDate.setValidators(Validators.required);
+    } else if (!this.showDatePicker) {
+      this.citiesPollutionForm.controls.fromDate.clearValidators();
+      this.citiesPollutionForm.controls.toDate.clearValidators();
+    }
+
+    this.updateValidators();
+  }
+
+  private clearValidators(): void {
+    this.citiesPollutionForm.controls.country.clearValidators();
+    this.citiesPollutionForm.controls.parameter.clearValidators();
+    this.citiesPollutionForm.controls.fromDate.clearValidators();
+    this.citiesPollutionForm.controls.toDate.clearValidators();
+
+    this.updateValidators();
+  }
+
+  private updateValidators(): void {
+    this.citiesPollutionForm.controls.country.updateValueAndValidity();
+    this.citiesPollutionForm.controls.parameter.updateValueAndValidity();
+    this.citiesPollutionForm.controls.fromDate.updateValueAndValidity();
+    this.citiesPollutionForm.controls.toDate.updateValueAndValidity();
   }
 }
