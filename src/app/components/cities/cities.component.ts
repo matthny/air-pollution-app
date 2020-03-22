@@ -9,6 +9,8 @@ import { Column } from 'src/app/models/column';
 import { GridService } from 'src/app/services/grid.service';
 import { Measurement } from 'src/app/models/measurement';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Parameters {
   [param: string]: string;
@@ -24,6 +26,8 @@ export class CitiesComponent implements OnInit {
   constructor(
     private openAQService: OpenAQService,
     private gridService: GridService,
+    private translate: TranslateService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -90,16 +94,21 @@ export class CitiesComponent implements OnInit {
   }
 
   private setCountries(): void {
-    this.openAQService.getCountries().subscribe((data: OpenAQResponse) => {
-      if (data.results != null) {
-        this.countries = data.results
-          .map(result => new Country(result))
-          .filter(result => result.name != null)
-          .sort(Country.alphabeticalComparator);
-      } else {
-        this.countries = [];
+    this.openAQService.getCountries().subscribe(
+      (data: OpenAQResponse) => {
+        if (data.results != null) {
+          this.countries = data.results
+            .map(result => new Country(result))
+            .filter(result => result.name != null)
+            .sort(Country.alphabeticalComparator);
+        } else {
+          this.countries = [];
+        }
+      },
+      () => {
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
       }
-    });
+    );
   }
 
   private setMeasurementsRequestDates(): void {
@@ -128,6 +137,9 @@ export class CitiesComponent implements OnInit {
       ])
       .then((result: OpenAQResponse[]) => {
         this.setMeasurementGrid(result[0]);
+      })
+      .catch(() => {
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
       });
 
       this.clearValidators();

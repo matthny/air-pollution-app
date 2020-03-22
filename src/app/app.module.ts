@@ -35,6 +35,7 @@ import { PollutionWarningComponent } from './components/pollution-warning/pollut
 import { LOCALE_ID } from '@angular/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  })
+    }),
+    MatSnackBarModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pl' }],
   bootstrap: [AppComponent]

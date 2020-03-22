@@ -24,6 +24,7 @@ import { PollutionWarningService } from '../../services/pollution-warning.servic
 import { Warning } from '../../models/warning';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class MainComponent implements OnInit {
     private openAQService: OpenAQService,
     private gridService: GridService,
     private pollutionWarningService: PollutionWarningService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private snackBar: MatSnackBar
   ) {
   }
 
@@ -113,46 +115,61 @@ export class MainComponent implements OnInit {
   }
 
   private setCountries(): void {
-    this.openAQService.getCountries().subscribe((data: OpenAQResponse) => {
-      if (data.results != null) {
-        this.countries = data.results
-          .map(result => new Country(result))
-          .filter(result => result.name != null)
-          .sort(Country.alphabeticalComparator);
-      } else {
-        this.countries = [];
+    this.openAQService.getCountries().subscribe(
+      (data: OpenAQResponse) => {
+        if (data.results != null) {
+          this.countries = data.results
+            .map(result => new Country(result))
+            .filter(result => result.name != null)
+            .sort(Country.alphabeticalComparator);
+        } else {
+          this.countries = [];
+        }
+      },
+      () => {
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
       }
-    });
+    );
   }
 
   private setCities(countryCode: string): void {
-    this.openAQService.getCities(countryCode).subscribe((data: OpenAQResponse) => {
-      if (data.results != null) {
-        this.cities = data.results
-          .map(result => new City(result))
-          .filter(result => result.city != null)
-          .sort(City.alphabeticalComparator);
+    this.openAQService.getCities(countryCode).subscribe(
+      (data: OpenAQResponse) => {
+        if (data.results != null) {
+          this.cities = data.results
+            .map(result => new City(result))
+            .filter(result => result.city != null)
+            .sort(City.alphabeticalComparator);
 
-        this.pollutionForm.controls.city.enable();
-      } else {
-        this.cities = [];
+          this.pollutionForm.controls.city.enable();
+        } else {
+          this.cities = [];
+        }
+      },
+      () => {
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
       }
-    });
+    );
   }
 
   private setLocations(city: string): void {
-    this.openAQService.getLocations(city).subscribe((data: OpenAQResponse) => {
-      if (data.results != null) {
-        this.locations = data.results
-          .map(result => new Location(result))
-          .filter(result => result.sourceName != null)
-          .sort(Location.alphabeticalComparator);
+    this.openAQService.getLocations(city).subscribe(
+      (data: OpenAQResponse) => {
+        if (data.results != null) {
+          this.locations = data.results
+            .map(result => new Location(result))
+            .filter(result => result.sourceName != null)
+            .sort(Location.alphabeticalComparator);
 
-        this.pollutionForm.controls.location.enable();
-      } else {
-        this.locations = [];
+          this.pollutionForm.controls.location.enable();
+        } else {
+          this.locations = [];
+        }
+      },
+      () => {
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
       }
-    });
+    );
   }
 
   private setMeasurementsRequestDates(): void {
@@ -202,6 +219,9 @@ export class MainComponent implements OnInit {
         this.pollutionWarningService.addColumns(this.latestPollutionGridColumns);
         this.pollutionWarningService.prepareWarnings();
         this.warnings = this.pollutionWarningService.getWarnings();
+      })
+      .catch(() => {
+          this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
       });
 
       this.clearValidators();

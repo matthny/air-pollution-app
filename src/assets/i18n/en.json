@@ -38,5 +38,8 @@
   "bc": "Black carbon",
   "co": "Carbon monoxide",
   "no2": "Nitrogen dioxide",
-  "so2": "Sulfur dioxide"
+  "so2": "Sulfur dioxide",
+
+  "error": "Error",
+  "errorMessage": "API connection error"
 }

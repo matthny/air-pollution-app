@@ -37,6 +37,9 @@
   "bc": "Czarny węgiel",
   "co": "Tlenek węgla",
   "no2": "Dwutlenek azotu",
-  "so2": "Dwutlenek siarki"
+  "so2": "Dwutlenek siarki",
+
+  "error": "Błąd",
+  "errorMessage": "Błąd połączenia z API"
   
 }

@@ -11,6 +11,7 @@ import { WikiService } from 'src/app/api/wiki.service';
 import { Wiki } from 'src/app/models/wiki';
 
 import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class NavigationComponent {
     private breakpointObserver: BreakpointObserver,
     public popup: MatDialog,
     private wikiService: WikiService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private snackBar: MatSnackBar
   ) {}
 
     private handleClick(): void {
@@ -51,21 +53,25 @@ export class NavigationComponent {
     public openPopup(parameter: Parameter): void {
       let popupRef: MatDialogRef<PopupComponent, any>;
 
-      this.wikiService.getWiki(parameter).toPromise().then((result: WikiResponse) => {
-        const data: PopupData = {
-          wiki: new Wiki(result),
-          parameter: parameter
-        };
+      this.wikiService.getWiki(parameter).toPromise()
+        .then((result: WikiResponse) => {
+          const data: PopupData = {
+            wiki: new Wiki(result),
+            parameter: parameter
+          };
 
-        popupRef = this.popup.open(PopupComponent, {
-          width: PopupComponent.getWidth(this.isHandset),
-          height: PopupComponent.getHeight(this.isHandset),
-          data: data
+          popupRef = this.popup.open(PopupComponent, {
+            width: PopupComponent.getWidth(this.isHandset),
+            height: PopupComponent.getHeight(this.isHandset),
+            data: data
+          });
+
+          popupRef.componentInstance.createWikiParagraph();
+          popupRef.componentInstance.createTitle();
+        })
+        .catch(() => {
+          this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
         });
-
-        popupRef.componentInstance.createWikiParagraph();
-        popupRef.componentInstance.createTitle();
-      });
     }
 
     private setPL() {
