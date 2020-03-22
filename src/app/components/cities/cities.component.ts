@@ -106,7 +106,7 @@ export class CitiesComponent implements OnInit {
         }
       },
       () => {
-        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
       }
     );
   }
@@ -139,7 +139,7 @@ export class CitiesComponent implements OnInit {
         this.setMeasurementGrid(result[0]);
       })
       .catch(() => {
-        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
       });
 
       this.clearValidators();

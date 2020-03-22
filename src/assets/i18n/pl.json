@@ -39,7 +39,7 @@
   "no2": "Dwutlenek azotu",
   "so2": "Dwutlenek siarki",
 
-  "error": "Błąd",
-  "errorMessage": "Błąd połączenia z API"
+  "error": "Błąd połączenia z API",
+  "errorAction": "Zamknij"
   
 }

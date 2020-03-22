@@ -127,7 +127,7 @@ export class MainComponent implements OnInit {
         }
       },
       () => {
-        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
       }
     );
   }
@@ -147,7 +147,7 @@ export class MainComponent implements OnInit {
         }
       },
       () => {
-        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
       }
     );
   }
@@ -167,7 +167,7 @@ export class MainComponent implements OnInit {
         }
       },
       () => {
-        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
+        this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
       }
     );
   }
@@ -221,7 +221,7 @@ export class MainComponent implements OnInit {
         this.warnings = this.pollutionWarningService.getWarnings();
       })
       .catch(() => {
-          this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
+          this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
       });
 
       this.clearValidators();

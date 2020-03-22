@@ -70,7 +70,7 @@ export class NavigationComponent {
           popupRef.componentInstance.createTitle();
         })
         .catch(() => {
-          this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorMessage'), {duration: 4000});
+          this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
         });
     }
 

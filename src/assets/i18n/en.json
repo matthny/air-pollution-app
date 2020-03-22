@@ -40,6 +40,6 @@
   "no2": "Nitrogen dioxide",
   "so2": "Sulfur dioxide",
 
-  "error": "Error",
-  "errorMessage": "API connection error"
+  "error": "API connection error",
+  "errorAction": "Close"
 }
