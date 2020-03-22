@@ -58,7 +58,6 @@
       flex: 1 1 100%;
       margin-bottom: 20px;
     }
-
   }
 }
 
@@ -72,3 +71,37 @@
   }
 }
 
+@media (max-width: 450px) {
+  .menu-container {
+    form {
+      .country-item {
+        padding-right: 0px;
+        flex: 1 1 50%;
+      }
+
+      .location-item {
+        padding-right: 0px;
+        flex: 1 1 50%;
+      }
+  
+      .date-pickers {
+        flex-wrap: wrap;
+
+        .picker-from {
+          padding-right: 0px;
+          flex: 1 1 50%;
+        }
+  
+        .picker-to {
+          flex: 1 1 50%;
+        }
+      }
+
+      .go-button-item {
+        flex: 1 1 100%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
