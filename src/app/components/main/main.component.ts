@@ -175,7 +175,7 @@ export class MainComponent implements OnInit {
   private setMeasurementsRequestDates(): void {
     if (this.pollutionForm.value.dateType === 'now') {
       this.fromDate = new Date(new Date().getTime() - (24 * 60 * 60 * 1000)); // 24h from now
-      this.toDate = new Date();
+      this.toDate = new Date(new Date().getTime() - (60 * 60 * 1000)); // 1h from now - hack not to get the same date as from latest-pollution
     } else if (this.pollutionForm.value.dateType === 'dateRange') {
       this.fromDate = CommonHelper.getFromDateUTC(this.pollutionForm.value.fromDate);
       this.toDate = CommonHelper.getToDateUTC(this.pollutionForm.value.toDate);
