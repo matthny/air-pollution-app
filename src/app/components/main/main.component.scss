@@ -66,6 +66,13 @@
   display: flex;
   flex-direction: column;
 
+  .units {
+    margin: 5px;
+    align-self: flex-end;
+    color: grey;
+    font-size: 60%;
+  }
+
   table {
     flex: 1 1 100%;
   }

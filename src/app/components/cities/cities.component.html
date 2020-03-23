@@ -47,6 +47,7 @@
   </div>
 
   <div class="grid-container">
+    <p class="units" *ngIf="measurementGridDataSourceAngularMaterial.data.length > 0">{{'unitsMessage' | translate}} μg/m<sup>3</sup></p>
     <table *ngIf="measurementGridDataSourceAngularMaterial.data.length > 0" mat-table [dataSource]="measurementGridDataSourceAngularMaterial" matSort (matSortChange)="onMatSortChange($event)" matSortDisableClear matSortStart="desc" class="mat-elevation-z8">
       <ng-container matColumnDef="{{cityColumn}}">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'city' | translate}} </th>

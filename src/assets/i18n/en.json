@@ -41,5 +41,7 @@
   "so2": "Sulfur dioxide",
 
   "error": "API connection error",
-  "errorAction": "Close"
+  "errorAction": "Close",
+
+  "unitsMessage": "Units: "
 }

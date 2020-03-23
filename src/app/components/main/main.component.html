@@ -56,6 +56,7 @@
   </div>
 
   <div class="grid-container">
+    <p class="units" *ngIf="latestPollutionGridDataSource.length > 0">{{'unitsMessage' | translate}} μg/m<sup>3</sup></p>
     <table  *ngIf="archiveView === false && latestPollutionGridDataSource.length > 0" mat-table [dataSource]="latestPollutionGridDataSource" matSort matSortDisabled  class="mat-elevation-z8">
       <ng-container matColumnDef="{{dateColumn}}">
         <th mat-header-cell *matHeaderCellDef> {{'date' | translate}} </th>
@@ -105,6 +106,7 @@
       <app-pollution-warning [warnings]="warnings"></app-pollution-warning>
     </div>
 
+    <p class="units" *ngIf="measurementGridDataSourceAngularMaterial.data.length > 0">{{'unitsMessage' | translate}} μg/m<sup>3</sup></p>
     <table *ngIf="measurementGridDataSourceAngularMaterial.data.length > 0" mat-table [dataSource]="measurementGridDataSourceAngularMaterial" matSort (matSortChange)="onMatSortChange($event)" matSortDisableClear matSortStart="desc" class="mat-elevation-z8">
       <ng-container matColumnDef="{{dateColumn}}">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>

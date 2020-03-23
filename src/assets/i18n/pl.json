@@ -40,6 +40,8 @@
   "so2": "Dwutlenek siarki",
 
   "error": "Błąd połączenia z API",
-  "errorAction": "Zamknij"
+  "errorAction": "Zamknij",
+
+  "unitsMessage": "Jednostki: "
   
 }
