@@ -1,11 +1,21 @@
 .popup-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   .popup-header {
+    flex: 0 1 auto;
+    justify-self: flex-start;
     display: flex;
     justify-content: flex-end;
   }
 
   title {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    flex: 0 1 auto;
+    margin-top: 1rem;
+  }
+
+  p {
+    flex: 1 1 auto;
   }
 }
