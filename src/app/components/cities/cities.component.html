@@ -74,12 +74,12 @@
       </ng-container>
 
       <ng-container matColumnDef="{{pm10Column}}">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> PM<div class="app-sub">10</div> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PM10 </th>
         <td mat-cell *matCellDef="let element"> {{element.pm10 ? element.pm10.getStringValue(2) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{pm25Column}}">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> PM<div class="app-sub">25</div> </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PM2.5 </th>
         <td mat-cell *matCellDef="let element"> {{element.pm25 ? element.pm25.getStringValue(2) : null}} </td>
       </ng-container>
 
