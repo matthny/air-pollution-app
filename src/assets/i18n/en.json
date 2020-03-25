@@ -2,7 +2,7 @@
   "appName": "air pollution app",
 
   "mainModuleName": "Air pollution",
-  "citiesModuleName": "Cities Rank",
+  "citiesModuleName": "Cities ranking",
 
   "country": "Country",
   "city": "City",
