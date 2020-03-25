@@ -129,16 +129,17 @@ export class PollutionWarningService {
 
   private calculateAverage(hours: number, parameter: string): number {
     let sum: number = 0;
+    let hoursActive: number = hours;
 
     for (let i = 0; i < hours; i++) {
       if (this.distinctMeasurements[i] != null && this.distinctMeasurements[i][parameter] != null) {
         sum += this.distinctMeasurements[i][parameter].getValue();
       } else {
-        hours--;
+        hoursActive--;
       }
     }
 
-    return sum / hours;
+    return sum / hoursActive;
   }
 
 
