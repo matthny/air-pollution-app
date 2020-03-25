@@ -123,6 +123,7 @@ export class CitiesComponent implements OnInit {
 
   private onGoClick(): void {
     this.setValidators();
+    this.resetMeasurementGrid();
 
     if (this.citiesPollutionForm.valid) {
       this.setMeasurementsRequestDates();
@@ -136,7 +137,11 @@ export class CitiesComponent implements OnInit {
         ).toPromise()
       ])
       .then((result: OpenAQResponse[]) => {
-        this.setMeasurementGrid(result[0]);
+        if (result[0].results != null && result[0].results.length > 0) {
+          this.setMeasurementGrid(result[0]);
+        } else {
+          this.snackBar.open(this.translate.instant('errorNoData'), this.translate.instant('errorAction'), {duration: 4000});
+        }
       })
       .catch(() => {
         this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
@@ -175,6 +180,7 @@ export class CitiesComponent implements OnInit {
 
   private resetMeasurementGrid(): void {
     this.measurementGridDataSource = [];
+    this.measurementGridDataSourceAngularMaterial = new MatTableDataSource([]);
     this.measurementGridGridColumns = [];
   }
 
