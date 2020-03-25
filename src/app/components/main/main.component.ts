@@ -197,6 +197,7 @@ export class MainComponent implements OnInit {
 
   private onGoClick(): void {
     this.setValidators();
+    this.resetGrids();
 
     if (this.pollutionForm.valid) {
       this.checkViewType();
@@ -210,15 +211,19 @@ export class MainComponent implements OnInit {
         ).toPromise()
       ])
       .then((result: OpenAQResponse[]) => {
-        this.setLatestPollutionGrid(result[0]);
-        this.setMeasurementGrid(result[1]);
+        if (result[0].results != null && result[0].results.length > 0) {
+          this.setLatestPollutionGrid(result[0]);
+        } else {
+          this.snackBar.open(this.translate.instant('errorNoData'), this.translate.instant('errorAction'), {duration: 4000});
+        }
 
-        this.pollutionWarningService.reset();
-        this.pollutionWarningService.addMeasurements(this.latestPollutionGridDataSource);
-        this.pollutionWarningService.addMeasurements(this.measurementGridDataSource);
-        this.pollutionWarningService.addColumns(this.latestPollutionGridColumns);
-        this.pollutionWarningService.prepareWarnings();
-        this.warnings = this.pollutionWarningService.getWarnings();
+        if (result[1].results != null && result[1].results.length > 0) {
+          this.setMeasurementGrid(result[1]);
+        } else {
+          this.snackBar.open(this.translate.instant('errorNoData'), this.translate.instant('errorAction'), {duration: 4000});
+        }
+
+        this.setWarnings();
       })
       .catch(() => {
           this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
@@ -226,6 +231,15 @@ export class MainComponent implements OnInit {
 
       this.clearValidators();
     }
+  }
+
+  private setWarnings(): void {
+    this.pollutionWarningService.reset();
+    this.pollutionWarningService.addMeasurements(this.latestPollutionGridDataSource);
+    this.pollutionWarningService.addMeasurements(this.measurementGridDataSource);
+    this.pollutionWarningService.addColumns(this.latestPollutionGridColumns);
+    this.pollutionWarningService.prepareWarnings();
+    this.warnings = this.pollutionWarningService.getWarnings();
   }
 
   private setLatestPollutionGrid(data) {
@@ -275,7 +289,13 @@ export class MainComponent implements OnInit {
 
   private resetMeasurementGrid(): void {
     this.measurementGridDataSource = [];
+    this.measurementGridDataSourceAngularMaterial = new MatTableDataSource([]);
     this.measurementGridGridColumns = [];
+  }
+
+  private resetGrids(): void {
+    this.resetLatestPollutionGrid();
+    this.resetMeasurementGrid();
   }
 
   private onDateToggleChange(): void {
