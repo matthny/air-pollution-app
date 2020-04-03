@@ -5,7 +5,8 @@ import { CitiesComponent } from './components/cities/cities.component';
 
 const routes: Routes = [
   { path: 'main', component: MainComponent },
-  { path: 'cities', component: CitiesComponent }
+  { path: 'cities', component: CitiesComponent },
+  { path: '', redirectTo: 'main' ,  pathMatch: 'full' }
 ];
 
 @NgModule({
