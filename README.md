@@ -1,6 +1,6 @@
-#This is an air pollution app.
+# This is an air pollution app.
 
-###Demo: [https://ng-air-app.herokuapp.com/](https://ng-air-app.herokuapp.com/)
+### Demo: [https://ng-air-app.herokuapp.com/](https://ng-air-app.herokuapp.com/)
 
 This app provides:
 
