@@ -84,14 +84,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 })
 export class AppModule { }
 
-export class DynamicLocaleId extends String {
-  locale: string;
-
-  toString() {
-    return this.locale;
-  }
-}
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
