@@ -3,35 +3,35 @@
     <h3>{{'airMessage' | translate}}</h3>
     <div *ngFor="let item of warnings">
       <p *ngIf="item.warning == 1" class="good mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageGood" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageGood" | translate}}
       </p>
 
       <p *ngIf="item.warning == 2" class="moderate mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageModerate" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageModerate" | translate}}
       </p>
 
       <p *ngIf="item.warning == 3" class="unhealthy-sensitive mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageUnhealthySensitive" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageUnhealthySensitive" | translate}}
       </p>
 
       <p *ngIf="item.warning == 4" class="unhealthy mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageUnhealthy" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageUnhealthy" | translate}}
       </p>
 
       <p *ngIf="item.warning == 5" class="very-unhealthy mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageVeryUnhealthy" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageVeryUnhealthy" | translate}}
       </p>
 
       <p *ngIf="item.warning == 6" class="hazardous mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageHazardous" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageHazardous" | translate}}
       </p>
 
       <p *ngIf="item.warning == 7" class="very-hazardous mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageVeryHazardous" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageVeryHazardous" | translate}}
       </p>
 
       <p *ngIf="item.warning == 8" class="out-of-range mat-body-strong">
-        ▶ <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageOutOfRange" | translate}}
+        <mat-icon>play_arrow</mat-icon> <span [innerHTML]="item.getParameterHTML()"></span> : {{"messageOutOfRange" | translate}}
       </p>
     </div>
   </div>
