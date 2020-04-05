@@ -3,6 +3,14 @@
   justify-content: center;
 }
 
+p {
+  display: flex;
+}
+
+mat-icon {
+  transform: scale(0.9);
+}
+
 .good {
   color: green;
 }
