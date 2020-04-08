@@ -4,21 +4,19 @@ import { Observable } from 'rxjs';
 import { map, first } from 'rxjs/operators';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
-
 import { PopupComponent, PopupData } from '../popup/popup.component';
 import { Parameter, WikiResponse } from 'src/app/helpers/common-helper';
 import { WikiService } from 'src/app/api/wiki.service';
 import { Wiki } from 'src/app/models/wiki';
-
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
+
 export class NavigationComponent {
   @ViewChild('drawer', { static: true })
   private drawer: MatSidenav;

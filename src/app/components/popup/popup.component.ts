@@ -4,7 +4,6 @@ import { Parameter, CommonHelper } from 'src/app/helpers/common-helper';
 import { Wiki } from 'src/app/models/wiki';
 import { TranslateService } from '@ngx-translate/core';
 
-
 export interface PopupData {
   wiki: Wiki;
   parameter: string;

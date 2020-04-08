@@ -1,17 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { Subscription, Observable } from 'rxjs';
-
-
 import { OpenAQService } from '../../api/open-aq.service';
 import { OpenAQResponse, SortEvent } from '../../helpers/common-helper';
-
 import { PollutionGridElement } from '../../models/pollution-grid-element';
-
-
 import { CommonHelper} from '../../helpers/common-helper';
-
 import { Country } from '../../models/country';
 import { City } from '../../models/city';
 import { Location } from '../../models/location';
@@ -26,14 +19,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-
-
 
 export class MainComponent implements OnInit {
 
