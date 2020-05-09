@@ -75,6 +75,18 @@
 
   .mat-table {
     width: 100%;
+
+    justify-content: center;
+
+    .parameter-column {
+      width: 6rem;
+      padding-right: 0.5rem;
+    }
+
+    .date-column {
+      width: 8rem; 
+      padding-right: 0.5rem;
+    }
   }
 }
 
