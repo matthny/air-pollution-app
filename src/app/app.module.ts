@@ -36,6 +36,7 @@ import { LOCALE_ID } from '@angular/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
           deps: [HttpClient]
       }
     }),
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pl' }],
   bootstrap: [AppComponent]

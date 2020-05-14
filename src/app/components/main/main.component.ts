@@ -78,6 +78,8 @@ export class MainComponent implements OnInit {
 
   private warnings: Warning[];
 
+  public isLoading: boolean;
+
   ngOnInit() {
     this.initialize();
   }
@@ -190,6 +192,7 @@ export class MainComponent implements OnInit {
     this.resetGrids();
 
     if (this.pollutionForm.valid) {
+      this.isLoading = true;
       this.checkViewType();
 
       Promise.all([
@@ -217,6 +220,9 @@ export class MainComponent implements OnInit {
       })
       .catch(() => {
           this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
 
       this.clearValidators();

@@ -51,9 +51,11 @@
         </mat-form-field>
       </div>
 
-      <button mat-stroked-button type="submit" class="go-button-item">{{'goButton' | translate}}</button>
+      <button mat-stroked-button type="submit" class="go-button-item" [disabled]="isLoading">{{'goButton' | translate}}</button>
     </form>
   </div>
+
+  <mat-progress-spinner class="spinner" mode="indeterminate" *ngIf="isLoading"></mat-progress-spinner>
 
   <div class="grid-container">
     <p class="units" *ngIf="archiveView === false && latestPollutionGridDataSource.length > 0">{{'unitsMessage' | translate}} μg/m<sup>3</sup></p>
