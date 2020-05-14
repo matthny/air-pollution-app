@@ -67,37 +67,37 @@
     
       <ng-container matColumnDef="{{bcColumn}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> BC </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.bc ? element.bc.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.bc ? element.bc.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{coColumn}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> CO </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.co ? element.co.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.co ? element.co.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{no2Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> NO<div class="app-sub">2</div> </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.no2 ? element.no2.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.no2 ? element.no2.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{o3Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> O<div class="app-sub">3</div> </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.o3 ? element.o3.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.o3 ? element.o3.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{pm10Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> PM10 </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm10 ? element.pm10.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm10 ? element.pm10.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{pm25Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> PM2.5 </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm25 ? element.pm25.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm25 ? element.pm25.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{so2Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> SO<div class="app-sub">2</div> </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.so2 ? element.so2.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.so2 ? element.so2.getStringValue(1) : null}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="latestPollutionGridColumns"></tr>
@@ -117,37 +117,37 @@
     
       <ng-container matColumnDef="{{bcColumn}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> BC </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.bc ? element.bc.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.bc ? element.bc.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{coColumn}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> CO </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.co ? element.co.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.co ? element.co.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{no2Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> NO<div class="app-sub">2</div> </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.no2 ? element.no2.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.no2 ? element.no2.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{o3Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> O<div class="app-sub">3</div> </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.o3 ? element.o3.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.o3 ? element.o3.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{pm10Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> PM10 </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm10 ? element.pm10.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm10 ? element.pm10.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{pm25Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> PM2.5 </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm25 ? element.pm25.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.pm25 ? element.pm25.getStringValue(1) : null}} </td>
       </ng-container>
 
       <ng-container matColumnDef="{{so2Column}}">
         <th class="parameter-column" mat-header-cell *matHeaderCellDef mat-sort-header> SO<div class="app-sub">2</div> </th>
-        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.so2 ? element.so2.getStringValue(2) : null}} </td>
+        <td class="parameter-column" mat-cell *matCellDef="let element"> {{element.so2 ? element.so2.getStringValue(1) : null}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="measurementGridGridColumns"></tr>
