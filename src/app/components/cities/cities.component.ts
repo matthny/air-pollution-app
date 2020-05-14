@@ -73,6 +73,7 @@ export class CitiesComponent implements OnInit {
   private measurementGridDataSourceAngularMaterial: MatTableDataSource<PollutionGridElement> = new MatTableDataSource([]);
   private measurementGridGridColumns: Column[] = [];
 
+  public isLoading: boolean;
 
   ngOnInit() {
     this.initialize();
@@ -126,6 +127,7 @@ export class CitiesComponent implements OnInit {
     this.resetMeasurementGrid();
 
     if (this.citiesPollutionForm.valid) {
+      this.isLoading = true;
       this.setMeasurementsRequestDates();
 
       Promise.all([
@@ -145,6 +147,9 @@ export class CitiesComponent implements OnInit {
       })
       .catch(() => {
         this.snackBar.open(this.translate.instant('error'), this.translate.instant('errorAction'), {duration: 4000});
+      })
+      .finally(() => {
+        this.isLoading = false;
       });
 
       this.clearValidators();
